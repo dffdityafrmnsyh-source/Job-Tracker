@@ -39,30 +39,14 @@
   </script>
 
   <style>
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(156, 163, 175, 0.4);
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(156, 163, 175, 0.7);
-    }
-    .glass-card {
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.4); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(156, 163, 175, 0.7); }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 font-sans antialiased min-h-full flex flex-col transition-colors duration-300">
 
-  <!-- APP CONTAINER WITH MOBILE WIREFRAME FRAMEWORK AND DESKTOP CONTAINER -->
   <div id="app" class="max-w-md mx-auto w-full min-h-screen bg-white dark:bg-gray-900 shadow-2xl flex flex-col relative pb-20 border-x border-gray-200 dark:border-gray-800 transition-colors">
 
     <!-- GLOBAL TOP HEADER BAR -->
@@ -79,25 +63,21 @@
         </div>
       </div>
 
-      <!-- Header Action Controls -->
       <div class="flex items-center space-x-2">
         <!-- Language Switcher -->
-        <button id="langToggleBtn" onclick="toggleLanguage()" class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+        <button id="langToggleBtn" onclick="toggleLanguage()" class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 transition">
           <i class="fa-solid fa-globe mr-1 text-indigo-500"></i><span id="langLabel">ID</span>
         </button>
 
-        <!-- Dark/Light Theme Switcher -->
-        <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-yellow-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+        <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-yellow-400 hover:bg-gray-200 transition">
           <i class="fa-solid fa-moon dark:hidden"></i>
           <i class="fa-solid fa-sun hidden dark:inline"></i>
         </button>
 
-        <!-- Profile Avatar Header Quick Link -->
         <button onclick="switchTab('profile')" class="relative focus:outline-none">
           <img id="headerAvatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80" class="w-8 h-8 rounded-full object-cover border-2 border-indigo-500 shadow-sm">
         </button>
 
-        <!-- Notification / Premium Badge -->
         <button onclick="showModal('subscriptionModal')" class="relative p-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400">
           <i class="fa-solid fa-crown text-yellow-500"></i>
           <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
@@ -105,12 +85,12 @@
       </div>
     </header>
 
-    <!-- NOTIFICATION TOAST -->
+    <!-- NOTIFICATION TOAST (Bisa di-close saat tombol X diklik) -->
     <div id="toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 transform -translate-y-10 opacity-0 transition-all duration-300 pointer-events-none w-11/12 max-w-sm bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-4 py-3 rounded-xl shadow-2xl flex items-center justify-between text-xs font-semibold">
       <span id="toastMessage" class="flex items-center gap-2">
-        <i class="fa-solid fa-circle-check text-green-400 dark:text-green-600"></i> Action completed!
+        <i class="fa-solid fa-circle-check text-green-400"></i> Action completed!
       </span>
-      <button onclick="hideToast()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      <button onclick="hideToast()" class="text-gray-400 hover:text-white pointer-events-auto p-1"><i class="fa-solid fa-xmark text-sm"></i></button>
     </div>
 
     <!-- MAIN VIEW CONTAINER -->
@@ -130,7 +110,6 @@
           </p>
         </div>
 
-        <!-- Auth Switcher Tabs -->
         <div class="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-xl">
           <button id="tabAuthLogin" onclick="switchAuthTab('login')" class="flex-1 py-2 text-xs font-bold rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm transition">
             Login
@@ -140,7 +119,6 @@
           </button>
         </div>
 
-        <!-- Single Sign On (SSO) Button -->
         <button onclick="handleSSO()" class="w-full py-3 px-4 rounded-xl border border-gray-300 dark:border-gray-700 font-bold text-xs flex items-center justify-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition">
           <i class="fa-brands fa-google text-red-500"></i>
           <span id="txtSSOBtn">Log In with Student Email (.ac.id / .edu)</span>
@@ -148,15 +126,20 @@
 
         <div class="relative flex py-1 items-center">
           <div class="flex-grow border-t border-gray-200 dark:border-gray-800"></div>
-          <span class="flex-shrink mx-3 text-[10px] text-gray-400 uppercase font-semibold">Atau Isian Manual</span>
+          <span id="txtManualDivider" class="flex-shrink mx-3 text-[10px] text-gray-400 uppercase font-semibold">Atau Isian Manual</span>
           <div class="flex-grow border-t border-gray-200 dark:border-gray-800"></div>
         </div>
 
-        <!-- Registration / Profile Creation Form -->
+        <!-- Registration Form with Password Field Included -->
         <form id="onboardingForm" onsubmit="handleFormSubmit(event)" class="space-y-3">
           <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1" id="lblEmail">Email Address</label>
             <input type="email" required id="inputEmail" placeholder="student@university.ac.id" class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none transition">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1" id="lblPassword">Password</label>
+            <input type="password" required id="inputPassword" placeholder="••••••••" class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none transition">
           </div>
 
           <div>
@@ -184,47 +167,38 @@
             </div>
           </div>
 
-          <!-- Custom Campus Input -->
           <div id="customSchoolWrapper" class="hidden">
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Nama Kampus / Universitas (Custom)</label>
-            <input type="text" id="inputCustomSchool" placeholder="Masukkan nama kampus Anda..." class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none transition">
+            <input type="text" id="inputCustomSchool" placeholder="Masukkan nama kampus..." class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none transition">
           </div>
 
-          <!-- Target Job -->
           <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1" id="lblTargetJob">Primary Career Interest / Target Job</label>
-            <input type="text" required id="inputTargetJob" placeholder="e.g. Fullstack Engineer / UI UX Designer" class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none transition">
+            <input type="text" required id="inputTargetJob" placeholder="e.g. Fullstack Engineer" class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none transition">
           </div>
 
-          <!-- File Upload CV -->
           <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1" id="lblCV">CV / Resume (PDF Auto-Scan Skills)</label>
             <div class="border-2 border-dashed border-gray-300 dark:border-gray-700 hover:border-indigo-500 rounded-xl p-4 text-center bg-gray-50 dark:bg-gray-800/50 cursor-pointer relative transition" onclick="document.getElementById('fileCV').click()">
               <input type="file" id="fileCV" accept=".pdf" class="hidden" onchange="handleFileUpload(this)">
               <i class="fa-solid fa-cloud-arrow-up text-2xl text-indigo-500 mb-1"></i>
               <p class="text-xs font-medium text-gray-600 dark:text-gray-300" id="cvFileName">Drag & drop your CV/Resume (PDF)</p>
-              <p class="text-[10px] text-gray-400 mt-0.5">Extracts skills & experience automatically</p>
             </div>
           </div>
 
-          <!-- Portfolio Links -->
           <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1" id="lblPortfolio">Portfolio Links</label>
-            <input type="url" id="inputPortfolio" placeholder="https://github.com/username or Figma link" class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none transition">
+            <input type="url" id="inputPortfolio" placeholder="https://github.com/username" class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none transition">
           </div>
 
-          <!-- Vision & Goals -->
           <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1" id="lblGoals">What are you trying to build or achieve right now?</label>
-            <textarea id="inputGoals" rows="2" placeholder="e.g., Looking for a frontend coder for a hackathon" class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none transition"></textarea>
+            <textarea id="inputGoals" rows="2" placeholder="e.g., Looking for a frontend coder" class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none transition"></textarea>
           </div>
 
-          <!-- Core Fields Multi-Select Chips -->
           <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1" id="lblChips">Select your core fields</label>
-            <div class="flex flex-wrap gap-1.5" id="chipContainer">
-              <!-- Rendered dynamically -->
-            </div>
+            <div class="flex flex-wrap gap-1.5" id="chipContainer"></div>
           </div>
 
           <button type="submit" class="w-full py-3 bg-gradient-to-r from-indigo-600 to-pink-600 text-white font-bold text-xs rounded-xl shadow-lg shadow-indigo-500/25 hover:opacity-95 transition transform active:scale-98 mt-2">
@@ -233,401 +207,105 @@
         </form>
       </section>
 
-
-      <!-- ================= SECTION 2: DASHBOARD & SMART FEED ================= -->
+      <!-- ================= SECTION 2: DASHBOARD ================= -->
       <section id="viewDashboard" class="space-y-4 hidden animate-fadeIn">
-        
-        <!-- Profile Match Score Banner -->
         <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-4 text-white shadow-xl relative overflow-hidden">
           <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
           <div class="flex items-center justify-between relative z-10">
             <div>
-              <span class="text-[10px] uppercase font-extrabold tracking-wider bg-white/20 px-2 py-0.5 rounded-full" id="txtStrengthBadge">Profile Strength</span>
-              <h3 class="text-xl font-black mt-1" id="userStrengthText">85% Complete</h3>
-              <p class="text-[11px] text-indigo-100 mt-0.5" id="txtStrengthSub">Add portfolio link to reach 100% and unlock top matches</p>
+              <span class="text-[10px] uppercase font-extrabold tracking-wider bg-white/20 px-2 py-0.5 rounded-full">Profile Strength</span>
+              <h3 class="text-xl font-black mt-1">85% Complete</h3>
+              <p class="text-[11px] text-indigo-100 mt-0.5">Add portfolio link to reach 100% and unlock top matches</p>
             </div>
-            <div class="w-14 h-14 rounded-full border-4 border-white/30 flex items-center justify-center font-black text-sm bg-white/10 backdrop-blur-sm">
-              85%
-            </div>
+            <div class="w-14 h-14 rounded-full border-4 border-white/30 flex items-center justify-center font-black text-sm bg-white/10 backdrop-blur-sm">85%</div>
           </div>
         </div>
 
-        <!-- Pillar Tabs Filter -->
         <div class="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-xl text-xs font-semibold">
-          <button onclick="filterSmartFeed('all')" id="btnPillarAll" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 shadow-sm transition">
-            Semua
-          </button>
-          <button onclick="filterSmartFeed('jobs')" id="btnPillarJobs" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-indigo-600 transition">
-            Jobs
-          </button>
-          <button onclick="filterSmartFeed('peers')" id="btnPillarPeers" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-indigo-600 transition">
-            Peers
-          </button>
-          <button onclick="filterSmartFeed('mentors')" id="btnPillarMentors" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-indigo-600 transition">
-            Mentors
-          </button>
+          <button onclick="filterSmartFeed('all')" id="btnPillarAll" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 shadow-sm transition">Semua</button>
+          <button onclick="filterSmartFeed('jobs')" id="btnPillarJobs" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-indigo-600 transition">Jobs</button>
+          <button onclick="filterSmartFeed('peers')" id="btnPillarPeers" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-indigo-600 transition">Peers</button>
+          <button onclick="filterSmartFeed('mentors')" id="btnPillarMentors" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-indigo-600 transition">Mentors</button>
         </div>
 
-        <!-- OVERVIEW CARDS: TOP MATCH TODAY -->
         <div id="smartFeedContainer" class="space-y-4">
-          
-          <!-- Top Job Match -->
-          <div class="feed-item feed-jobs bg-white dark:bg-gray-800/80 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition">
+          <div class="feed-item feed-jobs bg-white dark:bg-gray-800/80 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-md">
-                <i class="fa-solid fa-briefcase mr-1"></i> Top Match Job
-              </span>
-              <span class="text-xs font-extrabold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950/50 px-2 py-0.5 rounded-full">
-                97% Match
-              </span>
+              <span class="text-[10px] font-bold uppercase text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md">Top Match Job</span>
+              <span class="text-xs font-extrabold text-green-600 bg-green-50 px-2 py-0.5 rounded-full">97% Match</span>
             </div>
             <h4 class="font-bold text-sm text-gray-900 dark:text-white">Frontend React Developer (Internship)</h4>
-            <p class="text-xs text-gray-500 dark:text-gray-400">TechCorp Asia • Remote • Rp 3.500.000/bln</p>
-            <div class="flex flex-wrap gap-1 mt-2 mb-3">
-              <span class="text-[10px] bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded text-gray-600 dark:text-gray-300">ReactJS</span>
-              <span class="text-[10px] bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded text-gray-600 dark:text-gray-300">Tailwind</span>
-              <span class="text-[10px] bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded text-gray-600 dark:text-gray-300">Figma</span>
-            </div>
-            <div class="flex gap-2">
-              <button onclick="applyJob('TechCorp Asia - Frontend React', this)" class="flex-1 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition">
-                1-Click Apply with Portfolio
-              </button>
-              <button onclick="toggleSaveItem('job', 1, this)" class="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
-                <i class="fa-regular fa-bookmark"></i>
-              </button>
-            </div>
+            <p class="text-xs text-gray-500">TechCorp Asia • Remote • Rp 3.500.000/bln</p>
+            <button onclick="applyJob('TechCorp Asia', this)" class="w-full mt-3 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition">1-Click Apply</button>
           </div>
-
-          <!-- Top Peer Match -->
-          <div class="feed-item feed-peers bg-white dark:bg-gray-800/80 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded-md">
-                <i class="fa-solid fa-users mr-1"></i> Peer Squad Match
-              </span>
-              <span class="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50 px-2 py-0.5 rounded-full">
-                85% Match
-              </span>
-            </div>
-            <div class="flex items-center gap-3">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" class="w-10 h-10 rounded-full object-cover border-2 border-purple-500">
-              <div>
-                <h4 class="font-bold text-sm text-gray-900 dark:text-white">Sarah Jenkins</h4>
-                <p class="text-xs text-gray-500 dark:text-gray-400">UI/UX Designer • Universitas Indonesia</p>
-              </div>
-            </div>
-            <p class="text-xs text-gray-600 dark:text-gray-300 mt-2 bg-gray-50 dark:bg-gray-900/50 p-2 rounded-lg italic">
-              "Ingin membangun platform IoT Smart Agriculture untuk Hackathon Nasional."
-            </p>
-            <div class="flex gap-2 mt-3">
-              <button onclick="inviteToSquad('Sarah Jenkins')" class="flex-1 py-2 bg-purple-600 text-white rounded-xl text-xs font-bold hover:bg-purple-700 transition">
-                <i class="fa-solid fa-user-plus mr-1"></i> Invite to Squad
-              </button>
-              <button onclick="toggleSaveItem('peer', 101, this)" class="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
-                <i class="fa-regular fa-bookmark"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Top Mentor Match -->
-          <div class="feed-item feed-mentors bg-white dark:bg-gray-800/80 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/60 px-2 py-0.5 rounded-md">
-                <i class="fa-solid fa-user-tie mr-1"></i> Recommended Mentor
-              </span>
-              <span class="text-xs font-extrabold text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/50 px-2 py-0.5 rounded-full">
-                90% Match
-              </span>
-            </div>
-            <div class="flex items-center gap-3">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" class="w-10 h-10 rounded-full object-cover border-2 border-pink-500">
-              <div>
-                <h4 class="font-bold text-sm text-gray-900 dark:text-white">Mark Z.</h4>
-                <p class="text-xs text-gray-500 dark:text-gray-400">Senior PM @ TechCorp • Rp 75.000 / sesi</p>
-              </div>
-            </div>
-            <p class="text-xs text-gray-600 dark:text-gray-300 mt-2">
-              Spesialis bimbingan CV Review, Career Roadmap Frontend & Product Management.
-            </p>
-            <div class="flex gap-2 mt-3">
-              <button onclick="openBookingModal('Mark Z.', 'Senior PM', 'Rp 75.000')" class="flex-1 py-2 bg-pink-600 text-white rounded-xl text-xs font-bold hover:bg-pink-700 transition">
-                Book 30-min Advising
-              </button>
-              <button onclick="toggleSaveItem('mentor', 201, this)" class="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
-                <i class="fa-regular fa-bookmark"></i>
-              </button>
-            </div>
-          </div>
-
         </div>
       </section>
 
-
-      <!-- ================= SECTION 3: JOBS, INTERNSHIPS & FREELANCE ================= -->
+      <!-- ================= SECTION 3: JOBS ================= -->
       <section id="viewJobs" class="space-y-4 hidden animate-fadeIn">
-        
-        <!-- Search & Filter Controls -->
         <div class="space-y-2">
-          <div class="relative">
-            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-xs"></i>
-            <input type="text" id="inputJobSearch" onkeyup="filterJobsList()" placeholder="Cari posisi, skill (e.g. iOS, React)..." class="w-full text-xs pl-9 pr-8 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 outline-none focus:ring-2 focus:ring-indigo-500">
-            <button onclick="showToast('Filter advance dibuka')" class="absolute right-2.5 top-2.5 text-xs text-indigo-600 dark:text-indigo-400 p-1">
-              <i class="fa-solid fa-sliders"></i>
-            </button>
-          </div>
-
-          <!-- Job Type Filter Pills -->
-          <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
-            <button onclick="filterJobCategory('all', this)" class="job-cat-btn bg-indigo-600 text-white px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Semua</button>
-            <button onclick="filterJobCategory('internship', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Internship</button>
-            <button onclick="filterJobCategory('freelance', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Freelance</button>
-            <button onclick="filterJobCategory('parttime', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Part-Time</button>
-            <button onclick="filterJobCategory('remote', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Remote Only</button>
-          </div>
+          <input type="text" id="inputJobSearch" onkeyup="filterJobsList()" placeholder="Cari posisi, skill..." class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 outline-none">
         </div>
-
-        <!-- Job Cards List -->
-        <div id="jobsListContainer" class="space-y-3">
-          <!-- Rendered dynamically -->
-        </div>
+        <div id="jobsListContainer" class="space-y-3"></div>
       </section>
 
-
-      <!-- ================= SECTION 4: PEER & TEAM FINDER (PILLAR 2) ================= -->
+      <!-- ================= SECTION 4: PEER ================= -->
       <section id="viewPeers" class="space-y-4 hidden animate-fadeIn">
-        
-        <!-- Peer Scope Segmented Toggle -->
         <div class="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-xl text-xs font-semibold">
-          <button onclick="switchPeerScope('campus')" id="btnScopeCampus" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 shadow-sm transition">
-            <i class="fa-solid fa-building-columns mr-1"></i> <span id="lblScopeCampusName">My Campus</span>
-          </button>
-          <button onclick="switchPeerScope('all')" id="btnScopeAll" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-indigo-600 transition flex items-center justify-center gap-1">
-            All Universities <span class="bg-yellow-400 text-black text-[9px] font-extrabold px-1 rounded">PRO</span>
-          </button>
+          <button onclick="switchPeerScope('campus')" id="btnScopeCampus" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-700 text-indigo-600 shadow-sm transition">My Campus</button>
+          <button onclick="switchPeerScope('all')" id="btnScopeAll" class="flex-1 py-1.5 rounded-lg text-gray-500 hover:text-indigo-600 transition">All Universities <span class="bg-yellow-400 text-black text-[9px] font-extrabold px-1 rounded">PRO</span></button>
         </div>
-
-        <!-- Project Board Title -->
-        <div class="flex items-center justify-between">
-          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400" id="txtPeerTitle">
-            Open Competition Teams Looking for Members
-          </h3>
-          <button onclick="openCreateTeamModal()" class="text-xs text-indigo-600 dark:text-indigo-400 font-bold hover:underline">
-            + Create Post
-          </button>
-        </div>
-
-        <!-- Peer Cards Grid -->
-        <div id="peerCardsContainer" class="space-y-3">
-          <!-- Rendered dynamically -->
-        </div>
+        <div id="peerCardsContainer" class="space-y-3"></div>
       </section>
 
-
-      <!-- ================= SECTION 5: MENTOR MARKETPLACE (PILLAR 3) ================= -->
+      <!-- ================= SECTION 5: MENTOR ================= -->
       <section id="viewMentors" class="space-y-4 hidden animate-fadeIn">
-        
-        <!-- Mentor Category Switcher -->
         <div class="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-xl text-xs font-semibold">
-          <button onclick="switchMentorCat('campus')" id="btnMentorCampus" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 shadow-sm transition">
-            Campus Academic Advisors (Free)
-          </button>
-          <button onclick="switchMentorCat('industry')" id="btnMentorIndustry" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-indigo-600 transition">
-            Industry Experts
-          </button>
+          <button onclick="switchMentorCat('campus')" id="btnMentorCampus" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-700 text-indigo-600 shadow-sm transition">Campus Academic Advisors</button>
+          <button onclick="switchMentorCat('industry')" id="btnMentorIndustry" class="flex-1 py-1.5 rounded-lg text-gray-500 hover:text-indigo-600 transition">Industry Experts</button>
         </div>
-
-        <!-- Mentor Monthly Trial Limit Alert Banner (Customized Requirement) -->
-        <div class="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-xl p-3 flex items-start gap-2 text-xs">
-          <i class="fa-solid fa-gift text-amber-500 text-base mt-0.5"></i>
-          <div>
-            <span class="font-bold text-amber-700 dark:text-amber-400" id="txtMentorTrialHeader">Free Monthly Mentor Quota</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[11px]" id="txtMentorTrialDesc">
-              Bulan pertama gratis (limit 3 sesi)! Sisa kuota gratis Anda: <span id="mentorFreeCount" class="font-bold text-indigo-600 dark:text-indigo-400">3 dari 3</span> sesi. Buka akses unlimited seharga <strong class="text-pink-600">Rp 75.000/bulan</strong>.
-            </p>
-          </div>
-        </div>
-
-        <!-- Mentors List -->
-        <div id="mentorsListContainer" class="space-y-3">
-          <!-- Rendered dynamically -->
-        </div>
+        <div id="mentorsListContainer" class="space-y-3"></div>
       </section>
 
-
-      <!-- ================= SECTION 6: APPLICATION TRACKER ("PROGRES LAMAR") ================= -->
+      <!-- ================= SECTION 6: TRACKER ================= -->
       <section id="viewTracker" class="space-y-4 hidden animate-fadeIn">
-        <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-800 pb-2">
-          <h3 class="text-sm font-bold text-gray-900 dark:text-white" id="txtTrackerTitle">Job Applications Tracker</h3>
-          <span class="text-xs bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-bold px-2 py-0.5 rounded-full" id="txtActiveCount">3 Active</span>
-        </div>
-
-        <!-- Application Status Cards (Based on Wireframe layout) -->
-        <div class="space-y-3" id="trackerList">
-          <!-- Card 1 -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-xs text-gray-900 dark:text-white">Company A — UI/UX Intern</h4>
-              <span class="text-[10px] text-gray-400">2 hari lalu</span>
-            </div>
-            
-            <!-- Wireframe Status Step Bar -->
-            <div class="grid grid-cols-5 gap-1 text-center mt-3 pt-2 border-t border-gray-100 dark:border-gray-700/50">
-              <div class="flex flex-col items-center">
-                <i class="fa-solid fa-paper-plane text-green-500 text-xs mb-1"></i>
-                <span class="text-[9px] font-bold text-green-600">Sent</span>
-              </div>
-              <div class="flex flex-col items-center">
-                <i class="fa-solid fa-square-check text-green-500 text-xs mb-1"></i>
-                <span class="text-[9px] font-bold text-green-600">Confirm</span>
-              </div>
-              <div class="flex flex-col items-center">
-                <i class="fa-solid fa-clipboard-user text-indigo-500 text-xs mb-1 animate-bounce"></i>
-                <span class="text-[9px] font-bold text-indigo-600 dark:text-indigo-400">Action</span>
-              </div>
-              <div class="flex flex-col items-center opacity-40">
-                <i class="fa-solid fa-comments text-gray-400 text-xs mb-1"></i>
-                <span class="text-[9px] text-gray-400">Interview</span>
-              </div>
-              <div class="flex flex-col items-center opacity-40">
-                <i class="fa-solid fa-award text-gray-400 text-xs mb-1"></i>
-                <span class="text-[9px] text-gray-400">Offer!</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-xs text-gray-900 dark:text-white">Company B — Frontend Freelance</h4>
-              <span class="text-[10px] text-gray-400">5 hari lalu</span>
-            </div>
-
-            <div class="grid grid-cols-5 gap-1 text-center mt-3 pt-2 border-t border-gray-100 dark:border-gray-700/50">
-              <div class="flex flex-col items-center">
-                <i class="fa-solid fa-paper-plane text-green-500 text-xs mb-1"></i>
-                <span class="text-[9px] font-bold text-green-600">Sent</span>
-              </div>
-              <div class="flex flex-col items-center">
-                <i class="fa-solid fa-square-check text-green-500 text-xs mb-1"></i>
-                <span class="text-[9px] font-bold text-green-600">Confirm</span>
-              </div>
-              <div class="flex flex-col items-center">
-                <i class="fa-solid fa-clipboard-user text-green-500 text-xs mb-1"></i>
-                <span class="text-[9px] font-bold text-green-600">Action</span>
-              </div>
-              <div class="flex flex-col items-center">
-                <i class="fa-solid fa-comments text-indigo-500 text-xs mb-1 animate-pulse"></i>
-                <span class="text-[9px] font-bold text-indigo-600 dark:text-indigo-400">Interview</span>
-              </div>
-              <div class="flex flex-col items-center opacity-40">
-                <i class="fa-solid fa-award text-gray-400 text-xs mb-1"></i>
-                <span class="text-[9px] text-gray-400">Offer!</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Saved Items Section (Jobs, Peers & Mentors) -->
-        <div class="mt-6">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">
-            Saved Items (Item Tersimpan)
-          </h4>
-          <div id="savedItemsContainer" class="space-y-2 text-xs text-gray-500">
-            <!-- Rendered dynamically -->
-            <p class="text-center py-4 text-xs italic">Belum ada pekerjaan, peer, atau mentor yang disimpan.</p>
-          </div>
+        <h3 class="text-sm font-bold text-gray-900 dark:text-white">Job Applications Tracker</h3>
+        <div id="savedItemsContainer" class="space-y-2 text-xs text-gray-500">
+          <p class="text-center py-4 text-xs italic">Belum ada item yang disimpan.</p>
         </div>
       </section>
 
-
-      <!-- ================= SECTION 7: CHAT & MESSAGING ================= -->
+      <!-- ================= SECTION 7: CHAT ================= -->
       <section id="viewChat" class="space-y-3 hidden animate-fadeIn flex flex-col h-[calc(100vh-140px)]">
-        
-        <!-- Sunday AI Smart Assistant Banner (Wireframe) -->
         <div class="bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl p-3 text-white flex items-center justify-between cursor-pointer shadow-md" onclick="startAIChat()">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-              <i class="fa-solid fa-wand-magic-sparkles text-yellow-200"></i>
-            </div>
-            <div>
-              <h4 class="font-bold text-xs">Chat smarter with Sunday AI!</h4>
-              <p class="text-[10px] text-amber-100">AI Assistant for CV review & match tips</p>
-            </div>
-          </div>
-          <i class="fa-solid fa-chevron-right text-xs"></i>
-        </div>
-
-        <!-- Chat Filter Tabs -->
-        <div class="flex gap-2 overflow-x-auto text-[11px] font-semibold no-scrollbar">
-          <button onclick="filterChatTab('all')" class="px-3 py-1 rounded-lg bg-indigo-600 text-white whitespace-nowrap">All messages</button>
-          <button onclick="filterChatTab('unread')" class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 whitespace-nowrap">Unread</button>
-          <button onclick="filterChatTab('work')" class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 whitespace-nowrap">Work / Employers</button>
-          <button onclick="filterChatTab('peers')" class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 whitespace-nowrap">Peers & Mentors</button>
-        </div>
-
-        <!-- Chat Conversations List -->
-        <div class="flex-1 overflow-y-auto space-y-2 pr-1" id="chatListContainer">
-          <!-- Chat Item 1 -->
-          <div onclick="openChatWindow('Anna Johnson', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80')" class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center justify-between cursor-pointer hover:border-indigo-500 transition">
-            <div class="flex items-center gap-3">
-              <div class="relative">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" class="w-10 h-10 rounded-full object-cover">
-                <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white dark:border-gray-800"></span>
-              </div>
-              <div>
-                <h5 class="font-bold text-xs text-gray-900 dark:text-white">Anna Johnson</h5>
-                <p class="text-[11px] text-gray-500 dark:text-gray-400 line-clamp-1">Hey! How's it going today? I've been reviewing your portfolio...</p>
-              </div>
-            </div>
-            <div class="text-right">
-              <span class="text-[9px] text-gray-400">09:15 AM</span>
-              <span class="block w-4 h-4 bg-pink-500 text-white rounded-full text-[9px] font-bold text-center leading-4 ml-auto mt-1">4</span>
-            </div>
-          </div>
-
-          <!-- Chat Item 2 -->
-          <div onclick="openChatWindow('Brian Carter', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80')" class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center justify-between cursor-pointer hover:border-indigo-500 transition">
-            <div class="flex items-center gap-3">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" class="w-10 h-10 rounded-full object-cover">
-              <div>
-                <h5 class="font-bold text-xs text-gray-900 dark:text-white">Brian Carter</h5>
-                <p class="text-[11px] text-gray-500 dark:text-gray-400 line-clamp-1">Can you help me figure this out? I've been stuck on React state...</p>
-              </div>
-            </div>
-            <span class="text-[9px] text-gray-400">09:22 AM</span>
+          <div>
+            <h4 class="font-bold text-xs">Chat smarter with Sunday AI!</h4>
+            <p class="text-[10px] text-amber-100">AI Assistant for CV review & match tips</p>
           </div>
         </div>
       </section>
 
-
-      <!-- ================= SECTION 8: PROFILE & CUSTOM STUDENT ID CARD ================= -->
+      <!-- ================= SECTION 8: PROFILE ID ================= -->
       <section id="viewProfile" class="space-y-4 hidden animate-fadeIn">
-        
-        <!-- WIREFRAME EDITABLE STUDENT ID CARD -->
         <div class="text-center mb-1">
-          <h3 class="text-sm font-bold text-gray-900 dark:text-white" id="txtIdCardHeader">Digital Student ID Card</h3>
-          <p class="text-[11px] text-gray-500" id="txtIdCardSub">Kustomisasi ID card sesuai minat karier utama Anda</p>
+          <h3 id="txtIdCardHeader" class="text-sm font-bold text-gray-900 dark:text-white">Digital Student ID Card</h3>
+          <p id="txtIdCardSub" class="text-[11px] text-gray-500">Kustomisasi ID card sesuai minat karier utama Anda</p>
         </div>
 
-        <div id="idCardPreview" class="relative rounded-2xl p-5 text-white shadow-2xl transition-all duration-300 border border-white/20 overflow-hidden" style="background: linear-gradient(135deg, #4f46e5 0%, #a855f7 100%);">
-          <!-- Card Header Barcode / School -->
+        <div id="idCardPreview" class="relative rounded-2xl p-5 text-white shadow-2xl transition-all duration-300 border border-white/25 overflow-hidden" style="background: linear-gradient(135deg, #4f46e5 0%, #a855f7 100%);">
           <div class="flex justify-between items-start mb-4">
             <div class="flex items-center gap-2">
               <i class="fa-solid fa-id-card-clip text-2xl"></i>
               <div>
-                <!-- Target Job Replacing SSC Badge per User Instructions -->
-                <span id="cardBadgeTitle" class="text-[10px] font-black uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded">
-                  STUDENT
-                </span>
+                <span id="cardBadgeTitle" class="text-[10px] font-black uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded">STUDENT</span>
                 <p class="text-[10px] font-extrabold text-amber-200 mt-0.5" id="cardSchoolDisplay">UNIVERSITAS INDONESIA (UI)</p>
               </div>
             </div>
             <i class="fa-solid fa-barcode text-3xl opacity-80"></i>
           </div>
 
-          <!-- Card Body -->
           <div class="flex items-center gap-4">
             <div class="relative">
-              <!-- Avatar Awal Kosong (Placeholder / Silhouette) -->
               <div id="cardAvatarWrapper" class="w-16 h-16 rounded-xl overflow-hidden border-2 border-white shadow bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-400">
                 <img id="cardAvatar" src="" class="w-full h-full object-cover hidden">
                 <i id="cardAvatarPlaceholder" class="fa-solid fa-user text-2xl"></i>
@@ -642,17 +320,13 @@
           </div>
         </div>
 
-        <!-- ID CARD CUSTOMIZER CONTROLS (Wireframe: Color, Logo, Name, Campus Edit) -->
         <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-3">
-          <h4 class="font-bold text-xs text-gray-900 dark:text-white flex items-center justify-between">
-            <span><i class="fa-solid fa-palette text-indigo-500 mr-1"></i> Edit ID Card & Profile Details</span>
-          </h4>
+          <h4 class="font-bold text-xs text-gray-900 dark:text-white"><i class="fa-solid fa-palette text-indigo-500 mr-1"></i> Edit ID Card & Profile Details</h4>
 
-          <!-- Color Swatches -->
           <div>
-            <label class="block text-[11px] text-gray-500 dark:text-gray-400 mb-1">Card Gradient Theme</label>
+            <label class="block text-[11px] text-gray-500 mb-1">Card Gradient Theme</label>
             <div class="flex gap-2">
-              <button onclick="changeCardTheme('indigo')" class="w-7 h-7 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 ring-2 ring-offset-2 ring-indigo-500"></button>
+              <button onclick="changeCardTheme('indigo')" class="w-7 h-7 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 ring-2 ring-indigo-500"></button>
               <button onclick="changeCardTheme('pink')" class="w-7 h-7 rounded-full bg-gradient-to-tr from-pink-500 to-rose-600"></button>
               <button onclick="changeCardTheme('cyan')" class="w-7 h-7 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600"></button>
               <button onclick="changeCardTheme('dark')" class="w-7 h-7 rounded-full bg-gradient-to-tr from-gray-800 to-black"></button>
@@ -660,71 +334,53 @@
             </div>
           </div>
 
-          <!-- Dynamic Campus & Profile Editor -->
           <div class="space-y-2">
-            <!-- Avatar Upload & Preset Controls -->
             <div>
-              <label class="block text-[11px] font-semibold text-gray-600 dark:text-gray-300 mb-1">
-                <i class="fa-solid fa-camera text-indigo-500 mr-1"></i> Upload Foto Muka Anda (Opsional / Kosong Awal)
-              </label>
-              
-              <!-- Custom File Upload Button -->
+              <label class="block text-[11px] font-semibold text-gray-600 dark:text-gray-300 mb-1">Upload Foto Muka Anda</label>
               <div class="flex items-center gap-2 mb-2">
                 <input type="file" id="avatarFileInput" accept="image/*" onchange="handleAvatarUpload(this)" class="hidden">
                 <button type="button" onclick="document.getElementById('avatarFileInput').click()" class="flex-1 py-2 px-3 text-xs bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-300 font-bold rounded-xl border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-100 transition flex items-center justify-center gap-2">
-                  <i class="fa-solid fa-upload"></i> Upload Foto Muka Custom
+                  <i class="fa-solid fa-upload"></i> Upload Foto Kustom
                 </button>
-                <button type="button" onclick="resetAvatarToEmpty()" class="py-2 px-3 text-xs text-gray-500 hover:text-red-500 border border-gray-200 dark:border-gray-700 rounded-xl transition" title="Kosongkan Foto">
+                <button type="button" onclick="resetAvatarToEmpty()" class="py-2 px-3 text-xs text-gray-500 hover:text-red-500 border border-gray-200 dark:border-gray-700 rounded-xl transition">
                   <i class="fa-solid fa-rotate-left"></i>
                 </button>
-              </div>
-
-              <!-- Preset Avatars Row -->
-              <span class="block text-[10px] text-gray-400 mb-1">Atau pilih Avatar Preset:</span>
-              <div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
-                <img onclick="selectAvatarPreset(this.src)" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80" class="w-9 h-9 rounded-full object-cover cursor-pointer border-2 border-transparent hover:border-indigo-500 transition">
-                <img onclick="selectAvatarPreset(this.src)" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" class="w-9 h-9 rounded-full object-cover cursor-pointer border-2 border-transparent hover:border-indigo-500 transition">
-                <img onclick="selectAvatarPreset(this.src)" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" class="w-9 h-9 rounded-full object-cover cursor-pointer border-2 border-transparent hover:border-indigo-500 transition">
-                <img onclick="selectAvatarPreset(this.src)" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80" class="w-9 h-9 rounded-full object-cover cursor-pointer border-2 border-transparent hover:border-indigo-500 transition">
               </div>
             </div>
 
             <div>
               <label class="block text-[11px] text-gray-500 mb-1">Edit Kampus / University</label>
-              <div class="flex gap-2">
-                <input type="text" id="editCardSchool" onkeyup="updateCardLive()" value="" placeholder="Universitas Indonesia" class="w-full text-xs px-2.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent">
-              </div>
+              <input type="text" id="editCardSchool" onkeyup="updateCardLive()" value="" placeholder="Universitas..." class="w-full text-xs px-2.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent">
             </div>
 
             <div class="grid grid-cols-2 gap-2">
               <div>
                 <label class="block text-[11px] text-gray-500 mb-1">Display Name</label>
-                <input type="text" id="editCardName" onkeyup="updateCardLive()" value="" placeholder="Nama Lengkap" class="w-full text-xs px-2.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent">
+                <input type="text" id="editCardName" onkeyup="updateCardLive()" value="" placeholder="Nama" class="w-full text-xs px-2.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent">
               </div>
               <div>
-                <label class="block text-[11px] text-gray-500 mb-1">Career Focus / Minat</label>
-                <input type="text" id="editCardJob" onkeyup="updateCardLive()" value="" placeholder="Target Pekerjaan" class="w-full text-xs px-2.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent">
+                <label class="block text-[11px] text-gray-500 mb-1">Career Focus</label>
+                <input type="text" id="editCardJob" onkeyup="updateCardLive()" value="" placeholder="Target Job" class="w-full text-xs px-2.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent">
               </div>
             </div>
 
             <div>
               <label class="block text-[11px] text-gray-500 mb-1">Level / NIM / Jurusan</label>
-              <input type="text" id="editCardRole" onkeyup="updateCardLive()" value="" placeholder="NIM / Jurusan" class="w-full text-xs px-2.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent">
+              <input type="text" id="editCardRole" onkeyup="updateCardLive()" value="" placeholder="NIM" class="w-full text-xs px-2.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent">
             </div>
           </div>
         </div>
 
-        <!-- Account Settings Links -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-800 divide-y divide-gray-100 dark:divide-gray-700 text-xs font-semibold">
-          <button onclick="showModal('subscriptionModal')" class="w-full p-3 flex items-center justify-between text-indigo-600 dark:text-indigo-400 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition rounded-t-2xl">
+          <button onclick="showModal('subscriptionModal')" class="w-full p-3 flex items-center justify-between text-indigo-600 dark:text-indigo-400 hover:bg-gray-50 transition rounded-t-2xl">
             <span class="flex items-center gap-2"><i class="fa-solid fa-crown text-amber-500"></i> Subscription Plan (Rp 75k/bln)</span>
             <i class="fa-solid fa-chevron-right text-gray-400"></i>
           </button>
-          <button onclick="switchTab('landing')" class="w-full p-3 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition">
+          <button onclick="switchTab('landing')" class="w-full p-3 flex items-center justify-between hover:bg-gray-50 transition">
             <span class="flex items-center gap-2"><i class="fa-solid fa-user-pen text-gray-400"></i> Edit Profile & CV</span>
             <i class="fa-solid fa-chevron-right text-gray-400"></i>
           </button>
-          <button onclick="logoutUser()" class="w-full p-3 flex items-center justify-between text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30 transition rounded-b-2xl">
+          <button onclick="logoutUser()" class="w-full p-3 flex items-center justify-between text-red-600 hover:bg-red-50 transition rounded-b-2xl">
             <span class="flex items-center gap-2"><i class="fa-solid fa-right-from-bracket"></i> Logout</span>
             <i class="fa-solid fa-chevron-right text-red-400"></i>
           </button>
@@ -733,67 +389,27 @@
 
     </main>
 
-    <!-- ================= GLOBAL BOTTOM NAVIGATION BAR ================= -->
+    <!-- BOTTOM NAVIGATION BAR -->
     <nav class="fixed bottom-0 max-w-md w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 z-40 px-3 py-2 flex justify-around items-center">
       <button onclick="switchTab('dashboard')" id="navTabDashboard" class="nav-btn text-indigo-600 dark:text-indigo-400 flex flex-col items-center gap-0.5">
-        <i class="fa-solid fa-house text-base"></i>
-        <span class="text-[10px] font-bold" id="navHome">Feeds</span>
+        <i class="fa-solid fa-house text-base"></i><span class="text-[10px] font-bold" id="navHomeText">Feeds</span>
       </button>
       <button onclick="switchTab('jobs')" id="navTabJobs" class="nav-btn text-gray-400 hover:text-indigo-600 flex flex-col items-center gap-0.5">
-        <i class="fa-solid fa-magnifying-glass text-base"></i>
-        <span class="text-[10px] font-bold" id="navJobs">Find</span>
+        <i class="fa-solid fa-magnifying-glass text-base"></i><span class="text-[10px] font-bold" id="navFindText">Find</span>
       </button>
       <button onclick="switchTab('tracker')" id="navTabTracker" class="nav-btn text-gray-400 hover:text-indigo-600 flex flex-col items-center gap-0.5">
-        <i class="fa-solid fa-square-check text-base"></i>
-        <span class="text-[10px] font-bold" id="navTracker">Progres</span>
+        <i class="fa-solid fa-square-check text-base"></i><span class="text-[10px] font-bold" id="navProgText">Progres</span>
       </button>
       <button onclick="switchTab('chat')" id="navTabChat" class="nav-btn text-gray-400 hover:text-indigo-600 flex flex-col items-center gap-0.5 relative">
-        <i class="fa-solid fa-comments text-base"></i>
-        <span class="text-[10px] font-bold" id="navChat">Chat</span>
-        <span class="absolute top-0 right-3 w-2 h-2 bg-pink-500 rounded-full"></span>
+        <i class="fa-solid fa-comments text-base"></i><span class="text-[10px] font-bold" id="navChatText">Chat</span>
       </button>
       <button onclick="switchTab('profile')" id="navTabProfile" class="nav-btn text-gray-400 hover:text-indigo-600 flex flex-col items-center gap-0.5">
-        <i class="fa-solid fa-id-card text-base"></i>
-        <span class="text-[10px] font-bold" id="navProfile">Profile ID</span>
+        <i class="fa-solid fa-id-card text-base"></i><span class="text-[10px] font-bold" id="navProfileText">Profile ID</span>
       </button>
     </nav>
 
-
-    <!-- ================= MODALS ================= -->
-    <div id="createTeamModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center hidden animate-fadeIn p-2">
-      <div class="bg-white dark:bg-gray-900 w-full max-w-sm rounded-3xl p-5 space-y-4 shadow-2xl border border-gray-200 dark:border-gray-800">
-        <div class="flex justify-between items-center">
-          <h3 class="font-extrabold text-sm text-gray-900 dark:text-white">Create Squad / Project Post</h3>
-          <button onclick="closeModal('createTeamModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-base"></i></button>
-        </div>
-        <div class="space-y-3 text-xs">
-          <input type="text" id="inputTeamTitle" placeholder="Project Title" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-          <input type="text" id="inputTeamRoleNeeded" placeholder="Role Needed" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-          <textarea id="inputTeamDesc" rows="2" placeholder="Description..." class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"></textarea>
-          <button onclick="submitNewTeamPost()" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition">Publish Post</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="mentorBookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center hidden animate-fadeIn p-2">
-      <div class="bg-white dark:bg-gray-900 w-full max-w-sm rounded-3xl p-5 space-y-4 shadow-2xl border border-gray-200 dark:border-gray-800">
-        <div class="flex justify-between items-center">
-          <h3 class="font-extrabold text-sm text-gray-900 dark:text-white">Book Mentor Session</h3>
-          <button onclick="closeModal('mentorBookingModal')" class="text-gray-400"><i class="fa-solid fa-xmark text-base"></i></button>
-        </div>
-        <div class="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 p-3 rounded-xl">
-          <img id="bookMentorImg" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-full object-cover">
-          <div>
-            <h4 id="bookMentorName" class="font-bold text-xs text-gray-900 dark:text-white">Mark Z.</h4>
-            <p id="bookMentorRole" class="text-[11px] text-gray-500">Senior PM</p>
-            <p id="bookMentorPrice" class="text-xs font-bold text-indigo-600 mt-0.5">Rp 75.000</p>
-          </div>
-        </div>
-        <button onclick="processMentorPayment()" class="w-full py-3 bg-gradient-to-r from-indigo-600 to-pink-600 text-white font-bold text-xs rounded-xl shadow-lg">Pay & Confirm Booking</button>
-      </div>
-    </div>
-
-    <div id="subscriptionModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center hidden animate-fadeIn p-2">
+    <!-- MODALS -->
+    <div id="subscriptionModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center hidden p-2">
       <div class="bg-white dark:bg-gray-900 w-full max-w-sm rounded-3xl p-5 space-y-4 shadow-2xl border border-amber-500/30 text-center">
         <i class="fa-solid fa-crown text-4xl text-amber-500 mb-2"></i>
         <h3 class="text-lg font-black text-gray-900 dark:text-white">Go Premium Unlimited</h3>
@@ -801,41 +417,20 @@
         <button onclick="confirmUpgrade()" class="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-xs rounded-xl shadow-lg">Bayar Rp 75.000 Sekarang</button>
       </div>
     </div>
-
-    <div id="chatWindowModal" class="fixed inset-0 bg-white dark:bg-gray-900 z-50 flex flex-col hidden animate-fadeIn max-w-md mx-auto">
-      <div class="p-3 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between bg-white dark:bg-gray-900">
-        <div class="flex items-center gap-3">
-          <button onclick="closeModal('chatWindowModal')" class="text-gray-500 p-1"><i class="fa-solid fa-arrow-left"></i></button>
-          <img id="chatUserImg" src="" class="w-9 h-9 rounded-full object-cover">
-          <div>
-            <h4 id="chatUserName" class="font-bold text-xs text-gray-900 dark:text-white">User Name</h4>
-            <span class="text-[9px] text-green-500 font-semibold">Online</span>
-          </div>
-        </div>
-      </div>
-      <div id="chatMessagesBox" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50 dark:bg-gray-950 text-xs"></div>
-      <div class="p-3 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex items-center gap-2">
-        <input type="text" id="chatInputText" onkeydown="if(event.key==='Enter') sendChatMessage()" placeholder="Ketik pesan..." class="flex-1 text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 outline-none">
-        <button onclick="sendChatMessage()" class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center"><i class="fa-solid fa-paper-plane text-xs"></i></button>
-      </div>
-    </div>
-
   </div>
 
-
-  <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    // GLOBAL STATE MANAGEMENT (Foto awal dikosongkan / null)
     const state = {
       lang: 'id',
       theme: 'light',
       user: {
         name: '',
+        email: '',
+        password: '',
         school: '',
         role: '',
-        email: '',
         targetJob: '',
-        avatarUrl: '', // Kosong di awal
+        avatarUrl: '',
         isPremium: false,
         freeMentorQuota: 3
       },
@@ -844,38 +439,78 @@
       currentJobCategory: 'all'
     };
 
-    const mockJobs = [
-      { id: 1, title: 'Frontend React Developer', company: 'TechCorp Asia', type: 'internship', mode: 'remote', salary: 'Rp 3.500.000/bln', match: '97%', tags: ['ReactJS', 'Tailwind', 'Figma'] },
-      { id: 2, title: 'UI/UX Mobile App Designer', company: 'Creative Digital', type: 'freelance', mode: 'remote', salary: 'Rp 5.000.000/proj', match: '92%', tags: ['Figma', 'Prototyping'] },
-      { id: 3, title: 'Backend Node.js Engineer', company: 'Nusa Cloud', type: 'parttime', mode: 'onsite', salary: 'Rp 4.000.000/bln', match: '88%', tags: ['Node.js', 'PostgreSQL'] }
-    ];
-
-    const mockPeers = [
-      { id: 101, name: 'Sarah Jenkins', univ: 'Universitas Indonesia (UI)', role: 'UI/UX Designer', scope: 'campus', goal: 'Ingin membuat platform IoT Smart Agriculture.' }
-    ];
-
-    const mockMentors = [
-      { id: 201, name: 'Mark Z.', role: 'Senior PM at TechCorp', cat: 'industry', price: 'Rp 75.000', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80' }
-    ];
-
-    const availableChips = ['UI/UX', 'Web Dev', 'Finance', 'Marketing', 'IoT', 'AI / ML', 'Mobile App'];
+    // Dictionary for Language Toggle (ID & EN)
+    const translations = {
+      id: {
+        subHeader: "Student Hub & Match",
+        landingTitle: "Connect. Collaborate. Launch Career.",
+        landingSub: "Platform khusus mahasiswa untuk mencari Pekerjaan, Team Mate Hackathon, dan Mentor Profesional di JobMatch.",
+        loginTab: "Login",
+        signupTab: "Sign Up",
+        ssoBtn: "Log In with Student Email (.ac.id / .edu)",
+        manualDivider: "Atau Isian Manual",
+        emailLbl: "Email Address",
+        passwordLbl: "Password",
+        nameLbl: "Full Name",
+        schoolLbl: "University / Campus",
+        roleLbl: "Role / Level / NIM",
+        targetJobLbl: "Primary Career Interest / Target Job",
+        cvLbl: "CV / Resume (PDF Auto-Scan Skills)",
+        cvText: "Drag & drop your CV/Resume (PDF)",
+        portfolioLbl: "Portfolio Links",
+        goalsLbl: "What are you trying to build or achieve right now?",
+        chipsLbl: "Select your core fields",
+        submitBtn: "Complete Profile & Generate ID Card",
+        idCardHeader: "Digital Student ID Card",
+        idCardSub: "Kustomisasi ID card sesuai minat karier utama Anda",
+        navHome: "Feeds",
+        navFind: "Find",
+        navProg: "Progres",
+        navChat: "Chat",
+        navProfile: "Profile ID"
+      },
+      en: {
+        subHeader: "Student Hub & Match",
+        landingTitle: "Connect. Collaborate. Launch Career.",
+        landingSub: "Dedicated student platform to find jobs, hackathon team mates, and professional mentors on JobMatch.",
+        loginTab: "Login",
+        signupTab: "Sign Up",
+        ssoBtn: "Log In with Student Email (.ac.id / .edu)",
+        manualDivider: "Or Manual Entry",
+        emailLbl: "Email Address",
+        passwordLbl: "Password",
+        nameLbl: "Full Name",
+        schoolLbl: "University / Campus",
+        roleLbl: "Role / Level / Student ID",
+        targetJobLbl: "Primary Career Interest / Target Job",
+        cvLbl: "CV / Resume (PDF Auto-Scan Skills)",
+        cvText: "Drag & drop your CV/Resume (PDF)",
+        portfolioLbl: "Portfolio Links",
+        goalsLbl: "What are you trying to build or achieve right now?",
+        chipsLbl: "Select your core fields",
+        submitBtn: "Complete Profile & Generate ID Card",
+        idCardHeader: "Digital Student ID Card",
+        idCardSub: "Customize your ID card according to your main career interests",
+        navHome: "Feeds",
+        navFind: "Find",
+        navProg: "Progress",
+        navChat: "Chat",
+        navProfile: "Profile ID"
+      }
+    };
 
     window.onload = function() {
       renderChips();
       renderJobsList();
-      renderPeers('campus');
-      renderMentors('campus');
       updateCardLive();
     };
 
     function switchTab(tabId) {
       state.currentTab = tabId;
-      const views = ['Landing', 'Dashboard', 'Jobs', 'Peers', 'Mentors', 'Tracker', 'Chat', 'Profile'];
-      views.forEach(v => {
+      ['Landing', 'Dashboard', 'Jobs', 'Peers', 'Mentors', 'Tracker', 'Chat', 'Profile'].forEach(v => {
         const el = document.getElementById('view' + v);
         if (el) el.classList.add('hidden');
       });
-
       const activeView = document.getElementById('view' + capitalizeFirstLetter(tabId));
       if (activeView) activeView.classList.remove('hidden');
 
@@ -883,7 +518,6 @@
         btn.classList.remove('text-indigo-600', 'dark:text-indigo-400');
         btn.classList.add('text-gray-400');
       });
-
       const activeNavBtn = document.getElementById('navTab' + capitalizeFirstLetter(tabId));
       if (activeNavBtn) {
         activeNavBtn.classList.remove('text-gray-400');
@@ -891,104 +525,76 @@
       }
     }
 
-    function capitalizeFirstLetter(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
+    function capitalizeFirstLetter(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+    function toggleLanguage() {
+      state.lang = state.lang === 'id' ? 'en' : 'id';
+      document.getElementById('langLabel').innerText = state.lang.toUpperCase();
+      updateTexts();
+      showToast(state.lang === 'id' ? 'Bahasa diubah ke Bahasa Indonesia' : 'Language switched to English');
     }
 
-    function renderJobsList(cat = 'all', query = '') {
-      const container = document.getElementById('jobsListContainer');
-      if (!container) return;
-      container.innerHTML = mockJobs.map(j => `
-        <div class="bg-white dark:bg-gray-800/80 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-[10px] font-bold uppercase text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md">${j.type.toUpperCase()}</span>
-            <span class="text-xs font-extrabold text-green-600 bg-green-50 px-2 py-0.5 rounded-full">${j.match} Match</span>
-          </div>
-          <h4 class="font-bold text-sm text-gray-900 dark:text-white">${j.title}</h4>
-          <p class="text-xs text-gray-500">${j.company} • ${j.salary}</p>
-          <button onclick="applyJob('${j.company} - ${j.title}', this)" class="w-full mt-3 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition">1-Click Apply</button>
-        </div>
-      `).join('');
+    function updateTexts() {
+      const t = translations[state.lang];
+      if (document.getElementById('langSubHeader')) document.getElementById('langSubHeader').innerText = t.subHeader;
+      if (document.getElementById('txtLandingTitle')) document.getElementById('txtLandingTitle').innerText = t.landingTitle;
+      if (document.getElementById('txtLandingSub')) document.getElementById('txtLandingSub').innerText = t.landingSub;
+      if (document.getElementById('tabAuthLogin')) document.getElementById('tabAuthLogin').innerText = t.loginTab;
+      if (document.getElementById('tabAuthSignup')) document.getElementById('tabAuthSignup').innerText = t.signupTab;
+      if (document.getElementById('txtSSOBtn')) document.getElementById('txtSSOBtn').innerText = t.ssoBtn;
+      if (document.getElementById('txtManualDivider')) document.getElementById('txtManualDivider').innerText = t.manualDivider;
+      if (document.getElementById('lblEmail')) document.getElementById('lblEmail').innerText = t.emailLbl;
+      if (document.getElementById('lblPassword')) document.getElementById('lblPassword').innerText = t.passwordLbl;
+      if (document.getElementById('lblName')) document.getElementById('lblName').innerText = t.nameLbl;
+      if (document.getElementById('lblSchool')) document.getElementById('lblSchool').innerText = t.schoolLbl;
+      if (document.getElementById('lblRole')) document.getElementById('lblRole').innerText = t.roleLbl;
+      if (document.getElementById('lblTargetJob')) document.getElementById('lblTargetJob').innerText = t.targetJobLbl;
+      if (document.getElementById('lblCV')) document.getElementById('lblCV').innerText = t.cvLbl;
+      if (document.getElementById('cvFileName')) document.getElementById('cvFileName').innerText = t.cvText;
+      if (document.getElementById('lblPortfolio')) document.getElementById('lblPortfolio').innerText = t.portfolioLbl;
+      if (document.getElementById('lblGoals')) document.getElementById('lblGoals').innerText = t.goalsLbl;
+      if (document.getElementById('lblChips')) document.getElementById('lblChips').innerText = t.chipsLbl;
+      if (document.getElementById('btnSubmitForm')) document.getElementById('btnSubmitForm').innerText = t.submitBtn;
+      if (document.getElementById('txtIdCardHeader')) document.getElementById('txtIdCardHeader').innerText = t.idCardHeader;
+      if (document.getElementById('txtIdCardSub')) document.getElementById('txtIdCardSub').innerText = t.idCardSub;
+      if (document.getElementById('navHomeText')) document.getElementById('navHomeText').innerText = t.navHome;
+      if (document.getElementById('navFindText')) document.getElementById('navFindText').innerText = t.navFind;
+      if (document.getElementById('navProgText')) document.getElementById('navProgText').innerText = t.navProg;
+      if (document.getElementById('navChatText')) document.getElementById('navChatText').innerText = t.navChat;
+      if (document.getElementById('navProfileText')) document.getElementById('navProfileText').innerText = t.navProfile;
     }
 
-    function filterJobCategory(cat, btn) {
-      state.currentJobCategory = cat;
-      document.querySelectorAll('.job-cat-btn').forEach(b => {
-        b.className = 'job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap';
-      });
-      if (btn) btn.className = 'job-cat-btn bg-indigo-600 text-white px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap';
-    }
-
-    function filterJobsList() {}
-
-    function openCreateTeamModal() { showModal('createTeamModal'); }
-
-    function submitNewTeamPost() {
-      const title = document.getElementById('inputTeamTitle').value;
-      const role = document.getElementById('inputTeamRoleNeeded').value;
-      if (!title || !role) { showToast('Mohon isi judul proyek dan role!'); return; }
-      mockPeers.unshift({ id: Date.now(), name: state.user.name || 'Mahasiswa', univ: state.user.school || 'UI', role, scope: 'campus', goal: title });
-      closeModal('createTeamModal');
-      renderPeers('campus');
-      showToast('Post Squad baru berhasil dipublikasikan!');
-    }
-
-    function handleCampusSelectChange(select) {
-      const wrapper = document.getElementById('customSchoolWrapper');
-      if (select.value === 'custom') wrapper.classList.remove('hidden');
-      else wrapper.classList.add('hidden');
-    }
-
-    /* KELOLA SUBMIT DATA LOGIN/SIGNUP & SINKRONISASI KE ID CARD */
     function handleFormSubmit(e) {
       e.preventDefault();
-      
-      // Ambil nilai dari input form secara langsung
-      const nameVal = document.getElementById('inputName').value;
-      const emailVal = document.getElementById('inputEmail').value;
-      const selectSchool = document.getElementById('inputSchool').value;
-      const schoolVal = selectSchool === 'custom' ? document.getElementById('inputCustomSchool').value : selectSchool;
-      const roleVal = document.getElementById('inputRole').value;
-      const jobVal = document.getElementById('inputTargetJob').value;
+      state.user.name = document.getElementById('inputName').value;
+      state.user.email = document.getElementById('inputEmail').value;
+      state.user.password = document.getElementById('inputPassword').value;
+      state.user.school = document.getElementById('inputSchool').value === 'custom' ? document.getElementById('inputCustomSchool').value : document.getElementById('inputSchool').value;
+      state.user.role = document.getElementById('inputRole').value;
+      state.user.targetJob = document.getElementById('inputTargetJob').value;
 
-      // Masukkan ke state user
-      state.user.name = nameVal;
-      state.user.email = emailVal;
-      state.user.school = schoolVal;
-      state.user.role = roleVal;
-      state.user.targetJob = jobVal;
+      document.getElementById('editCardName').value = state.user.name;
+      document.getElementById('editCardSchool').value = state.user.school;
+      document.getElementById('editCardRole').value = state.user.role;
+      document.getElementById('editCardJob').value = state.user.targetJob;
 
-      // Sinkronkan langsung ke input edit card di menu Profile ID agar data terisi otomatis
-      if (document.getElementById('editCardName')) document.getElementById('editCardName').value = nameVal;
-      if (document.getElementById('editCardSchool')) document.getElementById('editCardSchool').value = schoolVal;
-      if (document.getElementById('editCardRole')) document.getElementById('editCardRole').value = roleVal;
-      if (document.getElementById('editCardJob')) document.getElementById('editCardJob').value = jobVal;
-
-      // Perbarui tampilan ID card secara live
       updateCardLive();
-      
-      // Update header avatar default jika masih kosong
-      if (!state.user.avatarUrl) {
-        document.getElementById('headerAvatar').src = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80';
-      }
-
-      renderPeers('campus');
-      showToast('Profil & ID Card berhasil dibuat & disinkronkan!');
+      showToast(state.lang === 'id' ? 'Profil, Password, & ID Card berhasil dibuat & disinkronkan!' : 'Profile, Password, & ID Card successfully created & synced!');
       switchTab('dashboard');
     }
 
     function handleSSO() {
-      // Data dummy otomatis untuk SSO
       state.user.name = 'Ethan Carter';
       state.user.email = 'ethan@student.ac.id';
+      state.user.password = 'ssopassword123';
       state.user.school = 'Universitas Indonesia (UI)';
       state.user.role = 'BSCS III • NIM: 2206123456';
       state.user.targetJob = 'Fullstack Engineer';
 
-      if (document.getElementById('editCardName')) document.getElementById('editCardName').value = state.user.name;
-      if (document.getElementById('editCardSchool')) document.getElementById('editCardSchool').value = state.user.school;
-      if (document.getElementById('editCardRole')) document.getElementById('editCardRole').value = state.user.role;
-      if (document.getElementById('editCardJob')) document.getElementById('editCardJob').value = state.user.targetJob;
+      document.getElementById('editCardName').value = state.user.name;
+      document.getElementById('editCardSchool').value = state.user.school;
+      document.getElementById('editCardRole').value = state.user.role;
+      document.getElementById('editCardJob').value = state.user.targetJob;
 
       updateCardLive();
       showToast('Login SSO Mahasiswa Berhasil!');
@@ -996,82 +602,46 @@
     }
 
     function renderChips() {
-      const container = document.getElementById('chipContainer');
-      if (!container) return;
-      container.innerHTML = availableChips.map(chip => `
-        <button type="button" onclick="toggleChip(this)" class="px-2.5 py-1 rounded-lg text-xs border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500 transition">${chip}</button>
+      const chips = ['UI/UX', 'Web Dev', 'Finance', 'IoT', 'AI / ML'];
+      document.getElementById('chipContainer').innerHTML = chips.map(c => `
+        <button type="button" onclick="this.classList.toggle('bg-indigo-600'); this.classList.toggle('text-white')" class="px-2.5 py-1 rounded-lg text-xs border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 transition">${c}</button>
       `).join('');
     }
 
-    function toggleChip(btn) {
-      btn.classList.toggle('bg-indigo-600');
-      btn.classList.toggle('text-white');
-    }
-
-    function handleFileUpload(input) {
-      if (input.files && input.files[0]) {
-        document.getElementById('cvFileName').innerText = input.files[0].name;
-        showToast('CV Berhasil Diunggah & Di-scan!');
-      }
-    }
-
-    /* FOTO AWAL KOSONG & UPLOAD FOTO KUSTOM */
     function handleAvatarUpload(input) {
       if (input.files && input.files[0]) {
         const reader = new FileReader();
-        reader.onload = function(e) {
-          updateAvatarImage(e.target.result);
-          showToast('Foto profil berhasil di-upload ke ID Card!');
-        };
+        reader.onload = e => updateAvatarImage(e.target.result);
         reader.readAsDataURL(input.files[0]);
       }
     }
 
-    function selectAvatarPreset(srcUrl) {
-      updateAvatarImage(srcUrl);
-      showToast('Avatar preset berhasil dipasang!');
-    }
-
     function resetAvatarToEmpty() {
       state.user.avatarUrl = '';
-      const imgEl = document.getElementById('cardAvatar');
-      const placeholderEl = document.getElementById('cardAvatarPlaceholder');
-      imgEl.src = '';
-      imgEl.classList.add('hidden');
-      placeholderEl.classList.remove('hidden');
+      document.getElementById('cardAvatar').src = '';
+      document.getElementById('cardAvatar').classList.add('hidden');
+      document.getElementById('cardAvatarPlaceholder').classList.remove('hidden');
       document.getElementById('headerAvatar').src = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80';
       showToast('Foto ID Card dikosongkan.');
     }
 
     function updateAvatarImage(url) {
       state.user.avatarUrl = url;
-      const imgEl = document.getElementById('cardAvatar');
-      const placeholderEl = document.getElementById('cardAvatarPlaceholder');
-      if (url) {
-        imgEl.src = url;
-        imgEl.classList.remove('hidden');
-        placeholderEl.classList.add('hidden');
-        document.getElementById('headerAvatar').src = url;
-      }
+      document.getElementById('cardAvatar').src = url;
+      document.getElementById('cardAvatar').classList.remove('hidden');
+      document.getElementById('cardAvatarPlaceholder').classList.add('hidden');
+      document.getElementById('headerAvatar').src = url;
     }
 
-    /* UPDATE ID CARD SECARA LIVE SESUAI INPUT */
     function updateCardLive() {
-      const name = document.getElementById('editCardName')?.value || state.user.name || 'Nama Mahasiswa';
-      const job = document.getElementById('editCardJob')?.value || state.user.targetJob || 'STUDENT';
-      const school = document.getElementById('editCardSchool')?.value || state.user.school || 'KAMPUS / UNIVERSITAS';
-      const role = document.getElementById('editCardRole')?.value || state.user.role || 'NIM / JURUSAN';
-
-      document.getElementById('cardNameDisplay').innerText = name;
-      document.getElementById('cardBadgeTitle').innerText = job.toUpperCase();
-      document.getElementById('cardSchoolDisplay').innerText = school.toUpperCase();
-      document.getElementById('cardRoleDisplay').innerText = role;
+      document.getElementById('cardNameDisplay').innerText = document.getElementById('editCardName')?.value || state.user.name || 'Nama Mahasiswa';
+      document.getElementById('cardBadgeTitle').innerText = (document.getElementById('editCardJob')?.value || state.user.targetJob || 'STUDENT').toUpperCase();
+      document.getElementById('cardSchoolDisplay').innerText = (document.getElementById('editCardSchool')?.value || state.user.school || 'KAMPUS').toUpperCase();
+      document.getElementById('cardRoleDisplay').innerText = document.getElementById('editCardRole')?.value || state.user.role || 'NIM / JURUSAN';
       document.getElementById('cardEmailDisplay').innerText = state.user.email || 'email@student.ac.id';
     }
 
     function changeCardTheme(theme) {
-      const card = document.getElementById('idCardPreview');
-      if (!card) return;
       const themes = {
         indigo: 'linear-gradient(135deg, #4f46e5 0%, #a855f7 100%)',
         pink: 'linear-gradient(135deg, #ec4899 0%, #e11d48 100%)',
@@ -1079,92 +649,7 @@
         dark: 'linear-gradient(135deg, #1f2937 0%, #111827 100%)',
         emerald: 'linear-gradient(135deg, #10b981 0%, #0f766e 100%)'
       };
-      if (themes[theme]) card.style.background = themes[theme];
-    }
-
-    function renderPeers(scope = 'campus') {
-      const container = document.getElementById('peerCardsContainer');
-      if (!container) return;
-      container.innerHTML = mockPeers.map(peer => `
-        <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm">
-          <div class="flex items-center justify-between mb-2">
-            <h4 class="font-bold text-xs text-gray-900 dark:text-white">${peer.name}</h4>
-            <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md">${peer.univ}</span>
-          </div>
-          <p class="text-xs text-gray-500 font-semibold mb-1">${peer.role}</p>
-          <p class="text-xs text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-900/50 p-2.5 rounded-xl italic">"${peer.goal}"</p>
-          <button onclick="inviteToSquad('${peer.name}')" class="w-full mt-3 py-2 bg-purple-600 text-white rounded-xl text-xs font-bold hover:bg-purple-700 transition">Invite to Squad</button>
-        </div>
-      `).join('');
-    }
-
-    function switchPeerScope(scope) {
-      if (scope === 'all' && !state.user.isPremium) { showModal('subscriptionModal'); return; }
-      renderPeers(scope);
-    }
-
-    function renderMentors(cat = 'campus') {
-      const container = document.getElementById('mentorsListContainer');
-      if (!container) return;
-      container.innerHTML = mockMentors.map(m => `
-        <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <img src="${m.img}" class="w-12 h-12 rounded-full object-cover border-2 border-indigo-500">
-            <div><h4 class="font-bold text-xs text-gray-900 dark:text-white">${m.name}</h4><p class="text-[11px] text-gray-500">${m.role}</p></div>
-          </div>
-          <button onclick="openBookingModal('${m.name}', '${m.role}', '${m.price}')" class="px-3 py-1.5 bg-pink-600 text-white rounded-xl text-xs font-bold">Book</button>
-        </div>
-      `).join('');
-    }
-
-    function switchMentorCat(cat) { renderMentors(cat); }
-
-    function openBookingModal(name, role, price) {
-      if (state.user.freeMentorQuota <= 0 && !state.user.isPremium) { showModal('subscriptionModal'); return; }
-      showModal('mentorBookingModal');
-    }
-
-    function processMentorPayment() {
-      if (state.user.freeMentorQuota > 0) state.user.freeMentorQuota--;
-      closeModal('mentorBookingModal');
-      showToast('Sesi Bimbingan Mentor Berhasil Dijadwalkan!');
-    }
-
-    function applyJob(title, btn) {
-      btn.innerText = 'Applied ✓';
-      btn.classList.remove('bg-indigo-600');
-      btn.classList.add('bg-green-600');
-      showToast(`Lamaran 1-Click untuk ${title} terkirim!`);
-    }
-
-    function inviteToSquad(name) { showToast(`Undangan gabung Squad dikirim ke ${name}!`); }
-
-    function openChatWindow(name, img) {
-      document.getElementById('chatUserName').innerText = name;
-      document.getElementById('chatUserImg').src = img || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80';
-      showModal('chatWindowModal');
-    }
-
-    function sendChatMessage() {
-      const text = document.getElementById('chatInputText').value;
-      if (!text) return;
-      const box = document.getElementById('chatMessagesBox');
-      box.innerHTML += `<div class="bg-indigo-600 text-white p-3 rounded-2xl max-w-[80%] ml-auto shadow-sm">${text}</div>`;
-      document.getElementById('chatInputText').value = '';
-      box.scrollTop = box.scrollHeight;
-    }
-
-    function startAIChat() { openChatWindow('Sunday AI Assistant', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&auto=format&fit=crop&q=80'); }
-
-    function toggleLanguage() {
-      state.lang = state.lang === 'id' ? 'en' : 'id';
-      document.getElementById('langLabel').innerText = state.lang.toUpperCase();
-      showToast(state.lang === 'id' ? 'Bahasa diubah ke Bahasa Indonesia' : 'Language switched to English');
-    }
-
-    function toggleDarkMode() {
-      document.documentElement.classList.toggle('dark');
-      state.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      if (themes[theme]) document.getElementById('idCardPreview').style.background = themes[theme];
     }
 
     function confirmUpgrade() {
@@ -1181,7 +666,7 @@
       document.getElementById('toastMessage').innerHTML = `<i class="fa-solid fa-circle-check text-green-400"></i> ${msg}`;
       toast.classList.remove('opacity-0', '-translate-y-10', 'pointer-events-none');
       toast.classList.add('opacity-100', 'translate-y-0');
-      setTimeout(hideToast, 3000);
+      setTimeout(hideToast, 4000);
     }
 
     function hideToast() {
@@ -1189,29 +674,16 @@
       toast.classList.add('opacity-0', '-translate-y-10', 'pointer-events-none');
     }
 
-    function filterSmartFeed(type) {
-      document.querySelectorAll('.feed-item').forEach(item => {
-        if (type === 'all' || item.classList.contains('feed-' + type)) item.style.display = 'block';
-        else item.style.display = 'none';
-      });
-    }
-
-    function switchAuthTab(type) {
-      const loginTab = document.getElementById('tabAuthLogin');
-      const signupTab = document.getElementById('tabAuthSignup');
-      if (type === 'login') {
-        loginTab.className = 'flex-1 py-2 text-xs font-bold rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm transition';
-        signupTab.className = 'flex-1 py-2 text-xs font-bold rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 transition';
-      } else {
-        signupTab.className = 'flex-1 py-2 text-xs font-bold rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm transition';
-        loginTab.className = 'flex-1 py-2 text-xs font-bold rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 transition';
-      }
-    }
-
     function logoutUser() {
       switchTab('landing');
       showToast('Berhasil Logout.');
     }
+
+    function renderJobsList() {}
+    function filterSmartFeed() {}
+    function switchPeerScope() {}
+    function switchMentorCat() {}
+    function startAIChat() {}
   </script>
 </body>
 </html>
