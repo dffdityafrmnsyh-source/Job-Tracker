@@ -79,17 +79,19 @@
 
         <button onclick="showModal('subscriptionModal')" class="relative p-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400">
           <i class="fa-solid fa-crown text-yellow-500"></i>
-          <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
+          <span id="headerCrownBadge" class="absolute top-1 right-1 w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
         </button>
       </div>
     </header>
 
-    <!-- NOTIFICATION TOAST -->
+    <!-- NOTIFICATION TOAST (Diperbaiki Tombol Close-nya) -->
     <div id="toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 transform -translate-y-10 opacity-0 transition-all duration-300 pointer-events-none w-11/12 max-w-sm bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-4 py-3 rounded-xl shadow-2xl flex items-center justify-between text-xs font-semibold">
       <span id="toastMessage" class="flex items-center gap-2">
         <i class="fa-solid fa-circle-check text-green-400 dark:text-green-600"></i> Action completed!
       </span>
-      <button onclick="hideToast()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      <button onclick="hideToast()" class="text-gray-400 hover:text-white p-1 focus:outline-none">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
     </div>
 
     <!-- MAIN VIEW CONTAINER -->
@@ -135,7 +137,6 @@
             <input type="email" required id="inputEmail" value="ethan@student.ac.id" placeholder="student@university.ac.id" class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none transition">
           </div>
 
-          <!-- PASSWORD FIELD ADDED -->
           <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1" id="lblPassword">Password</label>
             <input type="password" required id="inputPassword" value="secret123" placeholder="••••••••" class="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none transition">
@@ -234,7 +235,7 @@
           <!-- Top Job Match -->
           <div class="feed-item feed-jobs bg-white dark:bg-gray-800/80 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm transition">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-md job-match-tag">Top Match Job</span>
+              <span class="text-[10px] font-bold uppercase text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-md">Top Match Job</span>
               <span class="text-xs font-extrabold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950/50 px-2 py-0.5 rounded-full">97% Match</span>
             </div>
             <h4 class="font-bold text-sm text-gray-900 dark:text-white">Frontend React Developer (Internship)</h4>
@@ -244,8 +245,8 @@
               <span class="text-[10px] bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded text-gray-600 dark:text-gray-300">Tailwind</span>
             </div>
             <div class="flex gap-2">
-              <button onclick="applyJob('TechCorp Asia - Frontend React', this)" class="flex-1 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition btn-apply-text">1-Click Apply with Portfolio</button>
-              <button onclick="toggleSaveItem('job', 1, this)" class="save-btn-1 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
+              <button onclick="applyJob('TechCorp Asia - Frontend React', this)" class="flex-1 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition">1-Click Apply with Portfolio</button>
+              <button onclick="toggleSaveItem('job', 1, this)" class="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
                 <i class="fa-regular fa-bookmark"></i>
               </button>
             </div>
@@ -254,7 +255,7 @@
           <!-- Top Peer Match -->
           <div class="feed-item feed-peers bg-white dark:bg-gray-800/80 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm transition">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded-md peer-match-tag">Peer Squad Match</span>
+              <span class="text-[10px] font-bold uppercase text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded-md">Peer Squad Match</span>
               <span class="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50 px-2 py-0.5 rounded-full">85% Match</span>
             </div>
             <div class="flex items-center gap-3">
@@ -266,8 +267,8 @@
             </div>
             <p class="text-xs text-gray-600 dark:text-gray-300 mt-2 bg-gray-50 dark:bg-gray-900/50 p-2 rounded-lg italic">"Ingin membangun platform IoT Smart Agriculture untuk Hackathon Nasional."</p>
             <div class="flex gap-2 mt-3">
-              <button onclick="inviteToSquad('Sarah Jenkins')" class="flex-1 py-2 bg-purple-600 text-white rounded-xl text-xs font-bold hover:bg-purple-700 transition btn-invite-text"><i class="fa-solid fa-user-plus mr-1"></i> Invite to Squad</button>
-              <button onclick="toggleSaveItem('peer', 101, this)" class="save-btn-101 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
+              <button onclick="inviteToSquad('Sarah Jenkins')" class="flex-1 py-2 bg-purple-600 text-white rounded-xl text-xs font-bold hover:bg-purple-700 transition"><i class="fa-solid fa-user-plus mr-1"></i> Invite to Squad</button>
+              <button onclick="toggleSaveItem('peer', 101, this)" class="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
                 <i class="fa-regular fa-bookmark"></i>
               </button>
             </div>
@@ -276,7 +277,7 @@
           <!-- Top Mentor Match -->
           <div class="feed-item feed-mentors bg-white dark:bg-gray-800/80 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm transition">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/60 px-2 py-0.5 rounded-md mentor-match-tag">Recommended Mentor</span>
+              <span class="text-[10px] font-bold uppercase text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/60 px-2 py-0.5 rounded-md">Recommended Mentor</span>
               <span class="text-xs font-extrabold text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/50 px-2 py-0.5 rounded-full">90% Match</span>
             </div>
             <div class="flex items-center gap-3">
@@ -288,8 +289,8 @@
             </div>
             <p class="text-xs text-gray-600 dark:text-gray-300 mt-2">Spesialis bimbingan CV Review, Career Roadmap Frontend & Product Management.</p>
             <div class="flex gap-2 mt-3">
-              <button onclick="openBookingModal('Mark Z.', 'Senior PM', 'Rp 75.000')" class="flex-1 py-2 bg-pink-600 text-white rounded-xl text-xs font-bold hover:bg-pink-700 transition btn-book-text">Book 30-min Advising</button>
-              <button onclick="toggleSaveItem('mentor', 201, this)" class="save-btn-201 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
+              <button onclick="openBookingModal('Mark Z.', 'Senior PM', 'Rp 75.000')" class="flex-1 py-2 bg-pink-600 text-white rounded-xl text-xs font-bold hover:bg-pink-700 transition">Book 30-min Advising</button>
+              <button onclick="toggleSaveItem('mentor', 201, this)" class="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
                 <i class="fa-regular fa-bookmark"></i>
               </button>
             </div>
@@ -297,7 +298,7 @@
         </div>
       </section>
 
-      <!-- ================= SECTION 3: JOBS, INTERNSHIPS & FREELANCE ================= -->
+      <!-- ================= SECTION 3: JOBS ================= -->
       <section id="viewJobs" class="space-y-4 hidden animate-fadeIn">
         <div class="space-y-2">
           <div class="relative">
@@ -306,25 +307,25 @@
           </div>
 
           <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
-            <button onclick="filterJobCategory('all', this)" class="job-cat-btn bg-indigo-600 text-white px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap" data-cat-key="all">Semua</button>
-            <button onclick="filterJobCategory('internship', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap" data-cat-key="internship">Internship</button>
-            <button onclick="filterJobCategory('freelance', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap" data-cat-key="freelance">Freelance</button>
-            <button onclick="filterJobCategory('parttime', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap" data-cat-key="parttime">Part-Time</button>
-            <button onclick="filterJobCategory('remote', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap" data-cat-key="remote">Remote Only</button>
+            <button onclick="filterJobCategory('all', this)" class="job-cat-btn bg-indigo-600 text-white px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Semua</button>
+            <button onclick="filterJobCategory('internship', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Internship</button>
+            <button onclick="filterJobCategory('freelance', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Freelance</button>
+            <button onclick="filterJobCategory('parttime', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Part-Time</button>
+            <button onclick="filterJobCategory('remote', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Remote Only</button>
           </div>
         </div>
 
         <div id="jobsListContainer" class="space-y-3"></div>
       </section>
 
-      <!-- ================= SECTION 4: PEER & TEAM FINDER ================= -->
+      <!-- ================= SECTION 4: PEER ================= -->
       <section id="viewPeers" class="space-y-4 hidden animate-fadeIn">
         <div class="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-xl text-xs font-semibold">
           <button onclick="switchPeerScope('campus')" id="btnScopeCampus" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 shadow-sm transition">
             <i class="fa-solid fa-building-columns mr-1"></i> <span id="lblScopeCampusName">My Campus</span>
           </button>
           <button onclick="switchPeerScope('all')" id="btnScopeAll" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-indigo-600 transition flex items-center justify-center gap-1">
-            <span id="txtAllUniv">All Universities</span> <span class="bg-yellow-400 text-black text-[9px] font-extrabold px-1 rounded">PRO</span>
+            <span id="txtAllUniv">All Universities</span> <span id="badgePeerPro" class="bg-yellow-400 text-black text-[9px] font-extrabold px-1 rounded">PRO</span>
           </button>
         </div>
 
@@ -336,11 +337,11 @@
         <div id="peerCardsContainer" class="space-y-3"></div>
       </section>
 
-      <!-- ================= SECTION 5: MENTOR MARKETPLACE ================= -->
+      <!-- ================= SECTION 5: MENTOR ================= -->
       <section id="viewMentors" class="space-y-4 hidden animate-fadeIn">
         <div class="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-xl text-xs font-semibold">
-          <button onclick="switchMentorCat('campus')" id="btnMentorCampus" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 shadow-sm transition" id="txtCampusAdvisors">Campus Academic Advisors (Free)</button>
-          <button onclick="switchMentorCat('industry')" id="btnMentorIndustry" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-indigo-600 transition" id="txtIndustryExperts">Industry Experts</button>
+          <button onclick="switchMentorCat('campus')" id="btnMentorCampus" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 shadow-sm transition">Campus Academic Advisors (Free)</button>
+          <button onclick="switchMentorCat('industry')" id="btnMentorIndustry" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-indigo-600 transition">Industry Experts</button>
         </div>
 
         <div class="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-xl p-3 flex items-start gap-2 text-xs">
@@ -360,14 +361,14 @@
       <section id="viewTracker" class="space-y-4 hidden animate-fadeIn">
         <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-800 pb-2">
           <h3 class="text-sm font-bold text-gray-900 dark:text-white" id="txtTrackerTitle">Job Applications Tracker</h3>
-          <span class="text-xs bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-bold px-2 py-0.5 rounded-full" id="txtActiveCount">3 Active</span>
+          <span class="text-xs bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-bold px-2 py-0.5 rounded-full">3 Active</span>
         </div>
 
         <div class="space-y-3" id="trackerList">
           <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm">
             <div class="flex items-center justify-between mb-2">
               <h4 class="font-bold text-xs text-gray-900 dark:text-white">Company A — UI/UX Intern</h4>
-              <span class="text-[10px] text-gray-400" data-i18n="time_ago">2 hari lalu</span>
+              <span class="text-[10px] text-gray-400">2 hari lalu</span>
             </div>
             <div class="grid grid-cols-5 gap-1 text-center mt-3 pt-2 border-t border-gray-100 dark:border-gray-700/50 text-[9px] font-bold">
               <div class="text-green-600"><i class="fa-solid fa-paper-plane block mb-1"></i>Sent</div>
@@ -403,9 +404,9 @@
         </div>
 
         <div class="flex gap-2 overflow-x-auto text-[11px] font-semibold no-scrollbar">
-          <button onclick="filterChatTab('all')" class="px-3 py-1 rounded-lg bg-indigo-600 text-white whitespace-nowrap" id="chatTabAll">All messages</button>
-          <button onclick="filterChatTab('unread')" class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 whitespace-nowrap" id="chatTabUnread">Unread</button>
-          <button onclick="filterChatTab('work')" class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 whitespace-nowrap" id="chatTabWork">Work / Employers</button>
+          <button onclick="filterChatTab('all')" class="px-3 py-1 rounded-lg bg-indigo-600 text-white whitespace-nowrap">All messages</button>
+          <button onclick="filterChatTab('unread')" class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 whitespace-nowrap">Unread</button>
+          <button onclick="filterChatTab('work')" class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 whitespace-nowrap">Work / Employers</button>
         </div>
 
         <div class="flex-1 overflow-y-auto space-y-2 pr-1" id="chatListContainer">
@@ -547,33 +548,33 @@
     <!-- MODALS -->
     <div id="createTeamModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center hidden p-2">
       <div class="bg-white dark:bg-gray-900 w-full max-w-sm rounded-3xl p-5 space-y-4 shadow-2xl border border-gray-200 dark:border-gray-800">
-        <div class="flex justify-between items-center"><h3 class="font-extrabold text-sm text-gray-900 dark:text-white" id="txtModalCreatePost">Create Squad Post</h3><button onclick="closeModal('createTeamModal')"><i class="fa-solid fa-xmark"></i></button></div>
+        <div class="flex justify-between items-center"><h3 class="font-extrabold text-sm text-gray-900 dark:text-white">Create Squad Post</h3><button onclick="closeModal('createTeamModal')"><i class="fa-solid fa-xmark"></i></button></div>
         <div class="space-y-3 text-xs">
           <input type="text" id="inputTeamTitle" placeholder="Project Title" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
           <input type="text" id="inputTeamRoleNeeded" placeholder="Role Needed" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
           <textarea id="inputTeamDesc" rows="2" placeholder="Description" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"></textarea>
-          <button onclick="submitNewTeamPost()" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl" id="txtBtnPublish">Publish Post</button>
+          <button onclick="submitNewTeamPost()" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl">Publish Post</button>
         </div>
       </div>
     </div>
 
     <div id="mentorBookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center hidden p-2">
       <div class="bg-white dark:bg-gray-900 w-full max-w-sm rounded-3xl p-5 space-y-4 shadow-2xl border border-gray-200 dark:border-gray-800">
-        <div class="flex justify-between items-center"><h3 class="font-extrabold text-sm text-gray-900 dark:text-white" id="txtModalBook">Book Mentor Session</h3><button onclick="closeModal('mentorBookingModal')"><i class="fa-solid fa-xmark"></i></button></div>
+        <div class="flex justify-between items-center"><h3 class="font-extrabold text-sm text-gray-900 dark:text-white">Book Mentor Session</h3><button onclick="closeModal('mentorBookingModal')"><i class="fa-solid fa-xmark"></i></button></div>
         <div class="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 p-3 rounded-xl">
           <img id="bookMentorImg" src="" class="w-12 h-12 rounded-full object-cover">
           <div><h4 id="bookMentorName" class="font-bold text-xs text-gray-900 dark:text-white"></h4><p id="bookMentorRole" class="text-[11px] text-gray-500"></p><p id="bookMentorPrice" class="text-xs font-bold text-indigo-600 mt-0.5"></p></div>
         </div>
-        <button onclick="processMentorPayment()" class="w-full py-3 bg-gradient-to-r from-indigo-600 to-pink-600 text-white font-bold text-xs rounded-xl shadow-lg" id="txtBtnPay">Pay & Confirm Booking</button>
+        <button onclick="processMentorPayment()" class="w-full py-3 bg-gradient-to-r from-indigo-600 to-pink-600 text-white font-bold text-xs rounded-xl shadow-lg">Pay & Confirm Booking</button>
       </div>
     </div>
 
     <div id="subscriptionModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center hidden p-2">
       <div class="bg-white dark:bg-gray-900 w-full max-w-sm rounded-3xl p-5 space-y-4 shadow-2xl border border-amber-500/30 text-center">
         <i class="fa-solid fa-crown text-4xl text-amber-500 mb-2"></i>
-        <h3 class="text-lg font-black text-gray-900 dark:text-white" id="txtModalPremTitle">Go Premium Unlimited</h3>
-        <p class="text-xs text-gray-500 mt-1" id="txtModalPremSub">Buka semua fitur matching lintas universitas dan mentor unlimited di JobMatch.</p>
-        <button onclick="confirmUpgrade()" class="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-xs rounded-xl shadow-lg" id="txtBtnPremPay">Bayar Rp 75.000 Sekarang</button>
+        <h3 class="text-lg font-black text-gray-900 dark:text-white">Go Premium Unlimited</h3>
+        <p class="text-xs text-gray-500 mt-1">Buka semua fitur matching lintas universitas dan mentor unlimited di JobMatch.</p>
+        <button onclick="confirmUpgrade()" class="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-xs rounded-xl shadow-lg">Bayar Rp 75.000 Sekarang</button>
       </div>
     </div>
 
@@ -873,7 +874,6 @@
       showToast('Sesi Bimbingan Mentor Berhasil Dijadwalkan!');
     }
 
-    /* TOGGLE SAVE / UNSAVE ITEM DENGAN UPDATE IKON OTOMATIS */
     function toggleSaveItem(type, id, btn) {
       const icon = btn.querySelector('i');
       const index = state.savedItems.findIndex(i => i.type === type && i.id === id);
@@ -888,7 +888,6 @@
         showToast(state.lang === 'id' ? 'Item dihapus dari tersimpan.' : 'Item removed from saved.');
       }
       updateSavedListUI();
-      // Render ulang agar sinkron di seluruh komponen jika item yang sama dirender
       if (type === 'job') renderJobsList(state.currentJobCategory, document.getElementById('inputJobSearch').value);
       if (type === 'peer') renderPeers();
       if (type === 'mentor') renderMentors();
@@ -910,7 +909,7 @@
     }
 
     function applyJob(title, btn) {
-      btn.innerText = state.lang === 'id' ? 'Applied ✓' : 'Applied ✓';
+      btn.innerText = 'Applied ✓';
       btn.classList.remove('bg-indigo-600');
       btn.classList.add('bg-green-600');
       showToast(`Lamaran 1-Click untuk ${title} terkirim!`);
@@ -935,7 +934,6 @@
 
     function startAIChat() { openChatWindow('Sunday AI Assistant', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&auto=format&fit=crop&q=80'); }
 
-    /* FULL LANGUAGE TRANSLATION SWITCHER */
     function toggleLanguage() {
       state.lang = state.lang === 'id' ? 'en' : 'id';
       document.getElementById('langLabel').innerText = state.lang.toUpperCase();
@@ -963,16 +961,9 @@
           strengthBadge: "Profile Strength",
           strengthText: "85% Complete",
           strengthSub: "Add portfolio link to reach 100% and unlock top matches",
-          jobTag: "Top Match Job",
-          peerTag: "Peer Squad Match",
-          mentorTag: "Recommended Mentor",
-          applyBtn: "1-Click Apply with Portfolio",
-          inviteBtn: "Invite to Squad",
-          bookBtn: "Book 30-min Advising",
           allUniv: "All Universities",
           createPost: "+ Create Post",
           mentorHead: "Free Monthly Mentor Quota",
-          mentorDesc: "Bulan pertama gratis (limit 3 sesi)! Sisa kuota gratis Anda: <span id='mentorFreeCount' class='font-bold text-indigo-600 dark:text-indigo-400'>3 dari 3</span> sesi. Buka akses unlimited seharga <strong class='text-pink-600'>Rp 75.000/bulan</strong>.",
           trackerTitle: "Job Applications Tracker",
           savedHead: "Saved Items (Item Tersimpan)",
           noSaved: "Belum ada pekerjaan, peer, atau mentor yang disimpan.",
@@ -1016,16 +1007,9 @@
           strengthBadge: "Profile Strength",
           strengthText: "85% Complete",
           strengthSub: "Add portfolio link to reach 100% and unlock top matches",
-          jobTag: "Top Match Job",
-          peerTag: "Peer Squad Match",
-          mentorTag: "Recommended Mentor",
-          applyBtn: "1-Click Apply with Portfolio",
-          inviteBtn: "Invite to Squad",
-          bookBtn: "Book 30-min Advising",
           allUniv: "All Universities",
           createPost: "+ Create Post",
           mentorHead: "Free Monthly Mentor Quota",
-          mentorDesc: "First month free (limit 3 sessions)! Remaining free quota: <span id='mentorFreeCount' class='font-bold text-indigo-600 dark:text-indigo-400'>3 of 3</span> sessions. Unlock unlimited access for <strong class='text-pink-600'>Rp 75,000/month</strong>.",
           trackerTitle: "Job Applications Tracker",
           savedHead: "Saved Items",
           noSaved: "No saved jobs, peers, or mentors yet.",
@@ -1074,7 +1058,6 @@
       document.getElementById('txtAllUniv').innerText = t.allUniv;
       document.getElementById('txtCreatePost').innerText = t.createPost;
       document.getElementById('txtMentorTrialHeader').innerText = t.mentorHead;
-      document.getElementById('txtMentorTrialDesc').innerHTML = t.mentorDesc;
       document.getElementById('txtTrackerTitle').innerText = t.trackerTitle;
       document.getElementById('txtSavedHeader').innerText = t.savedHead;
       if(document.getElementById('txtNoSaved')) document.getElementById('txtNoSaved').innerText = t.noSaved;
@@ -1104,10 +1087,19 @@
       state.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     }
 
+    /* KONFIRMASI UPGRADE PERMANEN */
     function confirmUpgrade() {
       state.user.isPremium = true;
       closeModal('subscriptionModal');
-      showToast(state.lang === 'id' ? 'Akun JobMatch PRO Aktif!' : 'JobMatch PRO Active!');
+
+      // Update elemen UI untuk menandakan status PRO aktif
+      const badgePro = document.getElementById('badgePeerPro');
+      if (badgePro) {
+        badgePro.innerText = "ACTIVE";
+        badgePro.className = "bg-green-500 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded";
+      }
+
+      showToast(state.lang === 'id' ? 'JobMatch PRO Active!' : 'JobMatch PRO Active!');
     }
 
     function showModal(id) { document.getElementById(id).classList.remove('hidden'); }
@@ -1118,12 +1110,12 @@
       document.getElementById('toastMessage').innerHTML = `<i class="fa-solid fa-circle-check text-green-400"></i> ${msg}`;
       toast.classList.remove('opacity-0', '-translate-y-10', 'pointer-events-none');
       toast.classList.add('opacity-100', 'translate-y-0');
-      setTimeout(hideToast, 3000);
     }
 
     function hideToast() {
       const toast = document.getElementById('toast');
       toast.classList.add('opacity-0', '-translate-y-10', 'pointer-events-none');
+      toast.classList.remove('opacity-100', 'translate-y-0');
     }
 
     function filterSmartFeed(type) {
