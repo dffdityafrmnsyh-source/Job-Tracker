@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Career & Peer Match Platform</title>
+  <title>JobMatch - Student Career & Peer Match Platform</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome Icons -->
@@ -69,11 +69,11 @@
     <header class="sticky top-0 z-30 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 px-4 py-3 flex items-center justify-between">
       <div class="flex items-center space-x-2">
         <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center text-white font-black text-lg shadow-md shadow-indigo-500/20">
-          S
+          J
         </div>
         <div>
           <h1 class="text-base font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-transparent leading-tight">
-            EduMatch
+            JobMatch
           </h1>
           <p class="text-[10px] text-gray-500 dark:text-gray-400 font-medium" id="langSubHeader">Student Hub & Match</p>
         </div>
@@ -126,7 +126,7 @@
             Connect. Collaborate. Launch Career.
           </h2>
           <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-xs mx-auto" id="txtLandingSub">
-            Platform khusus mahasiswa untuk mencari Pekerjaan, Team Mate Hackathon, dan Mentor Profesional.
+            Platform khusus mahasiswa untuk mencari Pekerjaan, Team Mate Hackathon, dan Mentor Profesional di JobMatch.
           </p>
         </div>
 
@@ -342,14 +342,14 @@
               <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" class="w-10 h-10 rounded-full object-cover border-2 border-pink-500">
               <div>
                 <h4 class="font-bold text-sm text-gray-900 dark:text-white">Mark Z.</h4>
-                <p class="text-xs text-gray-500 dark:text-gray-400">Senior PM @ TechCorp • Rp 50.000 / sesi</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Senior PM @ TechCorp • Rp 75.000 / sesi</p>
               </div>
             </div>
             <p class="text-xs text-gray-600 dark:text-gray-300 mt-2">
               Spesialis bimbingan CV Review, Career Roadmap Frontend & Product Management.
             </p>
             <div class="flex gap-2 mt-3">
-              <button onclick="openBookingModal('Mark Z.', 'Senior PM', 'Rp 50.000')" class="flex-1 py-2 bg-pink-600 text-white rounded-xl text-xs font-bold hover:bg-pink-700 transition">
+              <button onclick="openBookingModal('Mark Z.', 'Senior PM', 'Rp 75.000')" class="flex-1 py-2 bg-pink-600 text-white rounded-xl text-xs font-bold hover:bg-pink-700 transition">
                 Book 30-min Advising
               </button>
               <button onclick="toggleSaveItem('mentor', 201, this)" class="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
@@ -441,7 +441,7 @@
           <div>
             <span class="font-bold text-amber-700 dark:text-amber-400" id="txtMentorTrialHeader">Free Monthly Mentor Quota</span>
             <p class="text-gray-600 dark:text-gray-300 text-[11px]" id="txtMentorTrialDesc">
-              Bulan pertama gratis! Sisa kuota gratis Anda: <span id="mentorFreeCount" class="font-bold text-indigo-600 dark:text-indigo-400">3 dari 3</span> sesi. Buka akses unlimited seharga <strong class="text-pink-600">Rp 50.000/bulan</strong>.
+              Bulan pertama gratis (limit 3 sesi)! Sisa kuota gratis Anda: <span id="mentorFreeCount" class="font-bold text-indigo-600 dark:text-indigo-400">3 dari 3</span> sesi. Buka akses unlimited seharga <strong class="text-pink-600">Rp 75.000/bulan</strong>.
             </p>
           </div>
         </div>
@@ -714,7 +714,7 @@
         <!-- Account Settings Links -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-800 divide-y divide-gray-100 dark:divide-gray-700 text-xs font-semibold">
           <button onclick="showModal('subscriptionModal')" class="w-full p-3 flex items-center justify-between text-indigo-600 dark:text-indigo-400 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition rounded-t-2xl">
-            <span class="flex items-center gap-2"><i class="fa-solid fa-crown text-amber-500"></i> Subscription Plan (Rp 50k/bln)</span>
+            <span class="flex items-center gap-2"><i class="fa-solid fa-crown text-amber-500"></i> Subscription Plan (Rp 75k/bln)</span>
             <i class="fa-solid fa-chevron-right text-gray-400"></i>
           </button>
           <button onclick="switchTab('landing')" class="w-full p-3 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition">
@@ -808,7 +808,7 @@
           <div>
             <h4 id="bookMentorName" class="font-bold text-xs text-gray-900 dark:text-white">Mark Z.</h4>
             <p id="bookMentorRole" class="text-[11px] text-gray-500">Senior PM @ TechCorp</p>
-            <p id="bookMentorPrice" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mt-0.5">Rp 50.000 / 30 mins</p>
+            <p id="bookMentorPrice" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mt-0.5">Rp 75.000 / 30 mins</p>
           </div>
         </div>
 
@@ -841,7 +841,7 @@
         <div class="text-center py-2">
           <i class="fa-solid fa-crown text-4xl text-amber-500 mb-2"></i>
           <h3 class="text-lg font-black text-gray-900 dark:text-white">Go Premium Unlimited</h3>
-          <p class="text-xs text-gray-500 mt-1">Buka semua fitur matching lintas universitas dan mentor unlimited.</p>
+          <p class="text-xs text-gray-500 mt-1">Buka semua fitur matching lintas universitas dan mentor unlimited di JobMatch.</p>
         </div>
 
         <div class="bg-amber-50 dark:bg-amber-950/40 p-4 rounded-2xl space-y-2 text-xs">
@@ -855,12 +855,12 @@
             <i class="fa-solid fa-check text-green-500"></i> Priority Application ke Employer
           </div>
           <div class="mt-2 pt-2 border-t border-amber-200 dark:border-amber-800 text-center font-extrabold text-base text-gray-900 dark:text-white">
-            Rp 50.000 <span class="text-xs font-normal text-gray-500">/ bulan</span>
+            Rp 75.000 <span class="text-xs font-normal text-gray-500">/ bulan</span>
           </div>
         </div>
 
         <button onclick="confirmUpgrade()" class="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-xs rounded-xl shadow-lg hover:opacity-95 transition">
-          Bayar Rp 50.000 Sekarang
+          Bayar Rp 75.000 Sekarang
         </button>
       </div>
     </div>
@@ -883,7 +883,7 @@
 
       <!-- Messages Body -->
       <div id="chatMessagesBox" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50 dark:bg-gray-950 text-xs">
-        <div class="text-center text-[10px] text-gray-400 py-2">Terhubung via EduMatch Secure Chat</div>
+        <div class="text-center text-[10px] text-gray-400 py-2">Terhubung via JobMatch Secure Chat</div>
         <div class="bg-white dark:bg-gray-800 p-3 rounded-2xl max-w-[80%] border border-gray-100 dark:border-gray-800 shadow-sm text-gray-800 dark:text-gray-200">
           Halo! Tertarik untuk kolaborasi di proyek hackathon / bimbingan karier?
         </div>
@@ -946,9 +946,9 @@
 
     // MOCK MENTORS DATA
     const mockMentors = [
-      { id: 201, name: 'Mark Z.', role: 'Senior PM at TechCorp', cat: 'industry', price: 'Rp 50.000', rating: '4.9', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80' },
+      { id: 201, name: 'Mark Z.', role: 'Senior PM at TechCorp', cat: 'industry', price: 'Rp 75.000', rating: '4.9', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80' },
       { id: 202, name: 'Dr. Hendra Suputra', role: 'Dosen Pembimbing Akademik', cat: 'campus', price: 'Gratis (Campus)', rating: '5.0', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80' },
-      { id: 203, name: 'David Brown', role: 'Lead UX Researcher @ Unicorn', cat: 'industry', price: 'Rp 50.000', rating: '4.8', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80' }
+      { id: 203, name: 'David Brown', role: 'Lead UX Researcher @ Unicorn', cat: 'industry', price: 'Rp 75.000', rating: '4.8', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80' }
     ];
 
     const availableChips = ['UI/UX', 'Web Dev', 'Finance', 'Marketing', 'IoT', 'AI / ML', 'Mobile App'];
@@ -1124,7 +1124,7 @@
 
       updateCardLive();
       renderPeers('campus');
-      showToast('Profile & ID Card Kampus Berhasil Dibuat!');
+      showToast('Profile & ID Card Kampus Berhasil Dibuat di JobMatch!');
       switchTab('dashboard');
     }
 
@@ -1464,7 +1464,7 @@
     function confirmUpgrade() {
       state.user.isPremium = true;
       closeModal('subscriptionModal');
-      showToast('Selamat! Akun Anda telah aktif ke Premium Unlimited.');
+      showToast('Selamat! Akun JobMatch PRO Anda telah aktif.');
     }
 
     function showModal(id) {
