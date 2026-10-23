@@ -84,7 +84,7 @@
       </div>
     </header>
 
-    <!-- NOTIFICATION TOAST (Diperbaiki Tombol Close-nya) -->
+    <!-- NOTIFICATION TOAST -->
     <div id="toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 transform -translate-y-10 opacity-0 transition-all duration-300 pointer-events-none w-11/12 max-w-sm bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-4 py-3 rounded-xl shadow-2xl flex items-center justify-between text-xs font-semibold">
       <span id="toastMessage" class="flex items-center gap-2">
         <i class="fa-solid fa-circle-check text-green-400 dark:text-green-600"></i> Action completed!
@@ -235,8 +235,8 @@
           <!-- Top Job Match -->
           <div class="feed-item feed-jobs bg-white dark:bg-gray-800/80 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm transition">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-md">Top Match Job</span>
-              <span class="text-xs font-extrabold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950/50 px-2 py-0.5 rounded-full">97% Match</span>
+              <span class="text-[10px] font-bold uppercase text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-md" id="txtTopJobBadge">Top Match Job</span>
+              <span class="text-xs font-extrabold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950/50 px-2 py-0.5 rounded-full" id="txtJobMatchRate">97% Match</span>
             </div>
             <h4 class="font-bold text-sm text-gray-900 dark:text-white">Frontend React Developer (Internship)</h4>
             <p class="text-xs text-gray-500 dark:text-gray-400">TechCorp Asia • Remote • Rp 3.500.000/bln</p>
@@ -245,7 +245,7 @@
               <span class="text-[10px] bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded text-gray-600 dark:text-gray-300">Tailwind</span>
             </div>
             <div class="flex gap-2">
-              <button onclick="applyJob('TechCorp Asia - Frontend React', this)" class="flex-1 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition">1-Click Apply with Portfolio</button>
+              <button onclick="applyJob('TechCorp Asia - Frontend React', this)" class="flex-1 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition" id="txtApplyBtnFeed">1-Click Apply with Portfolio</button>
               <button onclick="toggleSaveItem('job', 1, this)" class="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
                 <i class="fa-regular fa-bookmark"></i>
               </button>
@@ -255,8 +255,8 @@
           <!-- Top Peer Match -->
           <div class="feed-item feed-peers bg-white dark:bg-gray-800/80 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm transition">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded-md">Peer Squad Match</span>
-              <span class="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50 px-2 py-0.5 rounded-full">85% Match</span>
+              <span class="text-[10px] font-bold uppercase text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded-md" id="txtPeerSquadBadge">Peer Squad Match</span>
+              <span class="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50 px-2 py-0.5 rounded-full" id="txtPeerMatchRate">85% Match</span>
             </div>
             <div class="flex items-center gap-3">
               <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" class="w-10 h-10 rounded-full object-cover border-2 border-purple-500">
@@ -265,9 +265,9 @@
                 <p class="text-xs text-gray-500 dark:text-gray-400">UI/UX Designer • Universitas Indonesia</p>
               </div>
             </div>
-            <p class="text-xs text-gray-600 dark:text-gray-300 mt-2 bg-gray-50 dark:bg-gray-900/50 p-2 rounded-lg italic">"Ingin membangun platform IoT Smart Agriculture untuk Hackathon Nasional."</p>
+            <p class="text-xs text-gray-600 dark:text-gray-300 mt-2 bg-gray-50 dark:bg-gray-900/50 p-2 rounded-lg italic" id="txtPeerGoalSample">"Ingin membangun platform IoT Smart Agriculture untuk Hackathon Nasional."</p>
             <div class="flex gap-2 mt-3">
-              <button onclick="inviteToSquad('Sarah Jenkins')" class="flex-1 py-2 bg-purple-600 text-white rounded-xl text-xs font-bold hover:bg-purple-700 transition"><i class="fa-solid fa-user-plus mr-1"></i> Invite to Squad</button>
+              <button onclick="inviteToSquad('Sarah Jenkins')" class="flex-1 py-2 bg-purple-600 text-white rounded-xl text-xs font-bold hover:bg-purple-700 transition" id="txtInviteSquadBtn"><i class="fa-solid fa-user-plus mr-1"></i> Invite to Squad</button>
               <button onclick="toggleSaveItem('peer', 101, this)" class="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
                 <i class="fa-regular fa-bookmark"></i>
               </button>
@@ -277,8 +277,8 @@
           <!-- Top Mentor Match -->
           <div class="feed-item feed-mentors bg-white dark:bg-gray-800/80 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm transition">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/60 px-2 py-0.5 rounded-md">Recommended Mentor</span>
-              <span class="text-xs font-extrabold text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/50 px-2 py-0.5 rounded-full">90% Match</span>
+              <span class="text-[10px] font-bold uppercase text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/60 px-2 py-0.5 rounded-md" id="txtMentorRecBadge">Recommended Mentor</span>
+              <span class="text-xs font-extrabold text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/50 px-2 py-0.5 rounded-full" id="txtMentorMatchRate">90% Match</span>
             </div>
             <div class="flex items-center gap-3">
               <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" class="w-10 h-10 rounded-full object-cover border-2 border-pink-500">
@@ -287,9 +287,9 @@
                 <p class="text-xs text-gray-500 dark:text-gray-400">Senior PM @ TechCorp • Rp 75.000 / sesi</p>
               </div>
             </div>
-            <p class="text-xs text-gray-600 dark:text-gray-300 mt-2">Spesialis bimbingan CV Review, Career Roadmap Frontend & Product Management.</p>
+            <p class="text-xs text-gray-600 dark:text-gray-300 mt-2" id="txtMentorDescSample">Spesialis bimbingan CV Review, Career Roadmap Frontend & Product Management.</p>
             <div class="flex gap-2 mt-3">
-              <button onclick="openBookingModal('Mark Z.', 'Senior PM', 'Rp 75.000')" class="flex-1 py-2 bg-pink-600 text-white rounded-xl text-xs font-bold hover:bg-pink-700 transition">Book 30-min Advising</button>
+              <button onclick="openBookingModal('Mark Z.', 'Senior PM', 'Rp 75.000')" class="flex-1 py-2 bg-pink-600 text-white rounded-xl text-xs font-bold hover:bg-pink-700 transition" id="txtBookAdvisingBtn">Book 30-min Advising</button>
               <button onclick="toggleSaveItem('mentor', 201, this)" class="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
                 <i class="fa-regular fa-bookmark"></i>
               </button>
@@ -307,11 +307,11 @@
           </div>
 
           <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
-            <button onclick="filterJobCategory('all', this)" class="job-cat-btn bg-indigo-600 text-white px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Semua</button>
-            <button onclick="filterJobCategory('internship', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Internship</button>
-            <button onclick="filterJobCategory('freelance', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Freelance</button>
-            <button onclick="filterJobCategory('parttime', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Part-Time</button>
-            <button onclick="filterJobCategory('remote', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap">Remote Only</button>
+            <button onclick="filterJobCategory('all', this)" class="job-cat-btn bg-indigo-600 text-white px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap" id="txtCatAll">Semua</button>
+            <button onclick="filterJobCategory('internship', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap" id="txtCatIntern">Internship</button>
+            <button onclick="filterJobCategory('freelance', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap" id="txtCatFreelance">Freelance</button>
+            <button onclick="filterJobCategory('parttime', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap" id="txtCatParttime">Part-Time</button>
+            <button onclick="filterJobCategory('remote', this)" class="job-cat-btn bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap" id="txtCatRemote">Remote Only</button>
           </div>
         </div>
 
@@ -361,14 +361,14 @@
       <section id="viewTracker" class="space-y-4 hidden animate-fadeIn">
         <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-800 pb-2">
           <h3 class="text-sm font-bold text-gray-900 dark:text-white" id="txtTrackerTitle">Job Applications Tracker</h3>
-          <span class="text-xs bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-bold px-2 py-0.5 rounded-full">3 Active</span>
+          <span class="text-xs bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-bold px-2 py-0.5 rounded-full" id="txtTrackerActiveBadge">3 Active</span>
         </div>
 
         <div class="space-y-3" id="trackerList">
           <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm">
             <div class="flex items-center justify-between mb-2">
               <h4 class="font-bold text-xs text-gray-900 dark:text-white">Company A — UI/UX Intern</h4>
-              <span class="text-[10px] text-gray-400">2 hari lalu</span>
+              <span class="text-[10px] text-gray-400" id="txtTrackerTime">2 hari lalu</span>
             </div>
             <div class="grid grid-cols-5 gap-1 text-center mt-3 pt-2 border-t border-gray-100 dark:border-gray-700/50 text-[9px] font-bold">
               <div class="text-green-600"><i class="fa-solid fa-paper-plane block mb-1"></i>Sent</div>
@@ -396,17 +396,17 @@
               <i class="fa-solid fa-wand-magic-sparkles text-yellow-200"></i>
             </div>
             <div>
-              <h4 class="font-bold text-xs">Chat smarter with Sunday AI!</h4>
-              <p class="text-[10px] text-amber-100">AI Assistant for CV review & match tips</p>
+              <h4 class="font-bold text-xs" id="txtAiChatTitle">Chat smarter with Sunday AI!</h4>
+              <p class="text-[10px] text-amber-100" id="txtAiChatSub">AI Assistant for CV review & match tips</p>
             </div>
           </div>
           <i class="fa-solid fa-chevron-right text-xs"></i>
         </div>
 
         <div class="flex gap-2 overflow-x-auto text-[11px] font-semibold no-scrollbar">
-          <button onclick="filterChatTab('all')" class="px-3 py-1 rounded-lg bg-indigo-600 text-white whitespace-nowrap">All messages</button>
-          <button onclick="filterChatTab('unread')" class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 whitespace-nowrap">Unread</button>
-          <button onclick="filterChatTab('work')" class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 whitespace-nowrap">Work / Employers</button>
+          <button onclick="filterChatTab('all')" class="px-3 py-1 rounded-lg bg-indigo-600 text-white whitespace-nowrap" id="txtChatTabAll">All messages</button>
+          <button onclick="filterChatTab('unread')" class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 whitespace-nowrap" id="txtChatTabUnread">Unread</button>
+          <button onclick="filterChatTab('work')" class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 whitespace-nowrap" id="txtChatTabWork">Work / Employers</button>
         </div>
 
         <div class="flex-1 overflow-y-auto space-y-2 pr-1" id="chatListContainer">
@@ -418,7 +418,7 @@
               </div>
               <div>
                 <h5 class="font-bold text-xs text-gray-900 dark:text-white">Anna Johnson</h5>
-                <p class="text-[11px] text-gray-500 dark:text-gray-400 line-clamp-1">Hey! How's it going today? I've been reviewing your portfolio...</p>
+                <p class="text-[11px] text-gray-500 dark:text-gray-400 line-clamp-1" id="txtChatSampleMsg">Hey! How's it going today? I've been reviewing your portfolio...</p>
               </div>
             </div>
             <span class="text-[9px] text-gray-400">09:15 AM</span>
@@ -433,6 +433,7 @@
           <p class="text-[11px] text-gray-500" id="txtIdCardSub">Kustomisasi ID card sesuai minat karier utama Anda</p>
         </div>
 
+        <!-- ID Card Tanpa Foto / Avatar -->
         <div id="idCardPreview" class="relative rounded-2xl p-5 text-white shadow-2xl transition-all duration-300 border border-white/20 overflow-hidden" style="background: linear-gradient(135deg, #4f46e5 0%, #a855f7 100%);">
           <div class="flex justify-between items-start mb-4">
             <div class="flex items-center gap-2">
@@ -445,16 +446,10 @@
             <i class="fa-solid fa-barcode text-3xl opacity-80"></i>
           </div>
 
-          <div class="flex items-center gap-4">
-            <div class="relative">
-              <img id="cardAvatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80" class="w-16 h-16 rounded-xl object-cover border-2 border-white shadow">
-              <span class="absolute -bottom-1 -right-1 bg-green-500 w-3.5 h-3.5 rounded-full border-2 border-white"></span>
-            </div>
-            <div class="space-y-0.5">
-              <h4 id="cardNameDisplay" class="font-extrabold text-base tracking-wide">Ethan Carter</h4>
-              <p id="cardRoleDisplay" class="text-xs text-indigo-100 font-medium">BSCS III • NIM: 2206123456</p>
-              <p id="cardEmailDisplay" class="text-[10px] opacity-75">ethan@student.ac.id</p>
-            </div>
+          <div class="space-y-1 pt-2 border-t border-white/20">
+            <h4 id="cardNameDisplay" class="font-extrabold text-base tracking-wide">Ethan Carter</h4>
+            <p id="cardRoleDisplay" class="text-xs text-indigo-100 font-medium">BSCS III • NIM: 2206123456</p>
+            <p id="cardEmailDisplay" class="text-[10px] opacity-75">ethan@student.ac.id</p>
           </div>
         </div>
 
@@ -476,11 +471,11 @@
 
           <div class="space-y-2">
             <div>
-              <label class="block text-[11px] font-semibold text-gray-600 dark:text-gray-300 mb-1" id="txtAvatarLabel">Foto Profile / Avatar Muka</label>
+              <label class="block text-[11px] font-semibold text-gray-600 dark:text-gray-300 mb-1" id="txtAvatarLabel">Foto Profile / Header Avatar</label>
               <div class="flex items-center gap-2 mb-2">
                 <input type="file" id="avatarFileInput" accept="image/*" onchange="handleAvatarUpload(this)" class="hidden">
                 <button type="button" onclick="document.getElementById('avatarFileInput').click()" class="flex-1 py-2 px-3 text-xs bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-300 font-bold rounded-xl border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-100 transition flex items-center justify-center gap-2">
-                  <i class="fa-solid fa-upload"></i> <span id="txtUploadCustom">Upload Foto Muka Custom</span>
+                  <i class="fa-solid fa-upload"></i> <span id="txtUploadCustom">Upload Foto Profil Custom</span>
                 </button>
               </div>
             </div>
@@ -548,39 +543,39 @@
     <!-- MODALS -->
     <div id="createTeamModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center hidden p-2">
       <div class="bg-white dark:bg-gray-900 w-full max-w-sm rounded-3xl p-5 space-y-4 shadow-2xl border border-gray-200 dark:border-gray-800">
-        <div class="flex justify-between items-center"><h3 class="font-extrabold text-sm text-gray-900 dark:text-white">Create Squad Post</h3><button onclick="closeModal('createTeamModal')"><i class="fa-solid fa-xmark"></i></button></div>
+        <div class="flex justify-between items-center"><h3 class="font-extrabold text-sm text-gray-900 dark:text-white" id="txtModalCreateTitle">Create Squad Post</h3><button onclick="closeModal('createTeamModal')"><i class="fa-solid fa-xmark"></i></button></div>
         <div class="space-y-3 text-xs">
           <input type="text" id="inputTeamTitle" placeholder="Project Title" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
           <input type="text" id="inputTeamRoleNeeded" placeholder="Role Needed" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
           <textarea id="inputTeamDesc" rows="2" placeholder="Description" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"></textarea>
-          <button onclick="submitNewTeamPost()" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl">Publish Post</button>
+          <button onclick="submitNewTeamPost()" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl" id="txtPublishPostBtn">Publish Post</button>
         </div>
       </div>
     </div>
 
     <div id="mentorBookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center hidden p-2">
       <div class="bg-white dark:bg-gray-900 w-full max-w-sm rounded-3xl p-5 space-y-4 shadow-2xl border border-gray-200 dark:border-gray-800">
-        <div class="flex justify-between items-center"><h3 class="font-extrabold text-sm text-gray-900 dark:text-white">Book Mentor Session</h3><button onclick="closeModal('mentorBookingModal')"><i class="fa-solid fa-xmark"></i></button></div>
+        <div class="flex justify-between items-center"><h3 class="font-extrabold text-sm text-gray-900 dark:text-white" id="txtModalBookTitle">Book Mentor Session</h3><button onclick="closeModal('mentorBookingModal')"><i class="fa-solid fa-xmark"></i></button></div>
         <div class="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 p-3 rounded-xl">
           <img id="bookMentorImg" src="" class="w-12 h-12 rounded-full object-cover">
           <div><h4 id="bookMentorName" class="font-bold text-xs text-gray-900 dark:text-white"></h4><p id="bookMentorRole" class="text-[11px] text-gray-500"></p><p id="bookMentorPrice" class="text-xs font-bold text-indigo-600 mt-0.5"></p></div>
         </div>
-        <button onclick="processMentorPayment()" class="w-full py-3 bg-gradient-to-r from-indigo-600 to-pink-600 text-white font-bold text-xs rounded-xl shadow-lg">Pay & Confirm Booking</button>
+        <button onclick="processMentorPayment()" class="w-full py-3 bg-gradient-to-r from-indigo-600 to-pink-600 text-white font-bold text-xs rounded-xl shadow-lg" id="txtPayBookingBtn">Pay & Confirm Booking</button>
       </div>
     </div>
 
     <div id="subscriptionModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center hidden p-2">
       <div class="bg-white dark:bg-gray-900 w-full max-w-sm rounded-3xl p-5 space-y-4 shadow-2xl border border-amber-500/30 text-center">
         <i class="fa-solid fa-crown text-4xl text-amber-500 mb-2"></i>
-        <h3 class="text-lg font-black text-gray-900 dark:text-white">Go Premium Unlimited</h3>
-        <p class="text-xs text-gray-500 mt-1">Buka semua fitur matching lintas universitas dan mentor unlimited di JobMatch.</p>
-        <button onclick="confirmUpgrade()" class="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-xs rounded-xl shadow-lg">Bayar Rp 75.000 Sekarang</button>
+        <h3 class="text-lg font-black text-gray-900 dark:text-white" id="txtSubModalTitle">Go Premium Unlimited</h3>
+        <p class="text-xs text-gray-500 mt-1" id="txtSubModalDesc">Buka semua fitur matching lintas universitas dan mentor unlimited di JobMatch.</p>
+        <button onclick="confirmUpgrade()" class="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-xs rounded-xl shadow-lg" id="txtSubModalBtn">Bayar Rp 75.000 Sekarang</button>
       </div>
     </div>
 
     <div id="chatWindowModal" class="fixed inset-0 bg-white dark:bg-gray-900 z-50 flex flex-col hidden max-w-md mx-auto">
       <div class="p-3 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between bg-white dark:bg-gray-900">
-        <div class="flex items-center gap-3"><button onclick="closeModal('chatWindowModal')" class="text-gray-500 p-1"><i class="fa-solid fa-arrow-left"></i></button><img id="chatUserImg" src="" class="w-9 h-9 rounded-full object-cover"><div><h4 id="chatUserName" class="font-bold text-xs text-gray-900 dark:text-white"></h4><span class="text-[9px] text-green-500 font-semibold">Online</span></div></div>
+        <div class="flex items-center gap-3"><button onclick="closeModal('chatWindowModal')" class="text-gray-500 p-1"><i class="fa-solid fa-arrow-left"></i></button><img id="chatUserImg" src="" class="w-9 h-9 rounded-full object-cover"><div><h4 id="chatUserName" class="font-bold text-xs text-gray-900 dark:text-white"></h4><span class="text-[9px] text-green-500 font-semibold" id="txtOnlineStatus">Online</span></div></div>
       </div>
       <div id="chatMessagesBox" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50 dark:bg-gray-950 text-xs"></div>
       <div class="p-3 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex items-center gap-2">
@@ -715,11 +710,11 @@
     function submitNewTeamPost() {
       const title = document.getElementById('inputTeamTitle').value;
       const role = document.getElementById('inputTeamRoleNeeded').value;
-      if (!title || !role) { showToast('Isi judul & role!'); return; }
+      if (!title || !role) { showToast(state.lang === 'id' ? 'Isi judul & role!' : 'Fill title & role!'); return; }
       mockPeers.unshift({ id: Date.now(), name: state.user.name, univ: state.user.school, role, scope: 'campus', goal: title });
       closeModal('createTeamModal');
       renderPeers('campus');
-      showToast('Post Squad berhasil dipublikasikan!');
+      showToast(state.lang === 'id' ? 'Post Squad berhasil dipublikasikan!' : 'Squad post published successfully!');
     }
 
     function handleCampusSelectChange(select) {
@@ -736,6 +731,12 @@
       state.user.school = document.getElementById('inputSchool').value === 'custom' ? document.getElementById('inputCustomSchool').value : document.getElementById('inputSchool').value;
       state.user.role = document.getElementById('inputRole').value;
       state.user.targetJob = document.getElementById('inputTargetJob').value;
+
+      // Sync with ID card & profile edit inputs
+      if (document.getElementById('editCardName')) document.getElementById('editCardName').value = state.user.name;
+      if (document.getElementById('editCardSchool')) document.getElementById('editCardSchool').value = state.user.school;
+      if (document.getElementById('editCardJob')) document.getElementById('editCardJob').value = state.user.targetJob;
+
       updateCardLive();
       renderPeers('campus');
       showToast(state.lang === 'id' ? 'Profil & Akun Berhasil Dibuat!' : 'Profile & Account Created!');
@@ -763,21 +764,20 @@
     function handleFileUpload(input) {
       if (input.files && input.files[0]) {
         document.getElementById('cvFileName').innerText = input.files[0].name;
-        showToast('CV Berhasil Diunggah & Di-scan!');
+        showToast(state.lang === 'id' ? 'CV Berhasil Diunggah & Di-scan!' : 'CV Uploaded & Scanned Successfully!');
       }
     }
 
     function handleAvatarUpload(input) {
       if (input.files && input.files[0]) {
         const reader = new FileReader();
-        reader.onload = e => { updateAvatarImage(e.target.result); showToast('Foto profil muka diperbarui!'); };
+        reader.onload = e => { updateAvatarImage(e.target.result); showToast(state.lang === 'id' ? 'Foto profil diperbarui!' : 'Profile photo updated!'); };
         reader.readAsDataURL(input.files[0]);
       }
     }
 
     function updateAvatarImage(url) {
       state.user.avatarUrl = url;
-      document.getElementById('cardAvatar').src = url;
       document.getElementById('headerAvatar').src = url;
     }
 
@@ -819,7 +819,7 @@
             <p class="text-xs text-gray-500 font-semibold mb-1">${peer.role}</p>
             <p class="text-xs text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-900/50 p-2.5 rounded-xl italic">"${peer.goal}"</p>
             <div class="flex gap-2 mt-3">
-              <button onclick="inviteToSquad('${peer.name}')" class="flex-1 py-2 bg-purple-600 text-white rounded-xl text-xs font-bold hover:bg-purple-700 transition">Invite to Squad</button>
+              <button onclick="inviteToSquad('${peer.name}')" class="flex-1 py-2 bg-purple-600 text-white rounded-xl text-xs font-bold hover:bg-purple-700 transition">${state.lang === 'id' ? 'Invite to Squad' : 'Invite to Squad'}</button>
               <button onclick="toggleSaveItem('peer', ${peer.id}, this)" class="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-xl text-xs text-gray-500 hover:text-red-500 transition">
                 <i class="${bookmarkClass} fa-bookmark"></i>
               </button>
@@ -847,9 +847,9 @@
               <div><h4 class="font-bold text-xs text-gray-900 dark:text-white">${m.name}</h4><p class="text-[11px] text-gray-500">${m.role}</p><p class="text-xs font-extrabold text-pink-600 mt-0.5">${m.price}</p></div>
             </div>
             <div class="flex flex-col gap-1">
-              <button onclick="openBookingModal('${m.name}', '${m.role}', '${m.price}', '${m.img}')" class="px-3 py-1.5 bg-pink-600 text-white rounded-xl text-xs font-bold">Book</button>
+              <button onclick="openBookingModal('${m.name}', '${m.role}', '${m.price}', '${m.img}')" class="px-3 py-1.5 bg-pink-600 text-white rounded-xl text-xs font-bold">${state.lang === 'id' ? 'Book' : 'Book'}</button>
               <button onclick="toggleSaveItem('mentor', ${m.id}, this)" class="px-3 py-1 border border-gray-200 dark:border-gray-700 rounded-xl text-[10px] text-gray-500">
-                <i class="${bookmarkClass} fa-bookmark"></i> Save
+                <i class="${bookmarkClass} fa-bookmark"></i> ${state.lang === 'id' ? 'Simpan' : 'Save'}
               </button>
             </div>
           </div>
@@ -871,7 +871,7 @@
     function processMentorPayment() {
       if (state.user.freeMentorQuota > 0) state.user.freeMentorQuota--;
       closeModal('mentorBookingModal');
-      showToast('Sesi Bimbingan Mentor Berhasil Dijadwalkan!');
+      showToast(state.lang === 'id' ? 'Sesi Bimbingan Mentor Berhasil Dijadwalkan!' : 'Mentor Advisory Session Successfully Scheduled!');
     }
 
     function toggleSaveItem(type, id, btn) {
@@ -903,19 +903,19 @@
       container.innerHTML = state.savedItems.map(item => `
         <div class="bg-white dark:bg-gray-800 p-2.5 rounded-xl border border-gray-100 dark:border-gray-800 flex items-center justify-between text-xs">
           <span><i class="fa-solid fa-bookmark text-indigo-500 mr-2"></i> ${item.type.toUpperCase()} ID #${item.id}</span>
-          <span class="text-[10px] text-green-500 font-bold">Saved</span>
+          <span class="text-[10px] text-green-500 font-bold">${state.lang === 'id' ? 'Tersimpan' : 'Saved'}</span>
         </div>
       `).join('');
     }
 
     function applyJob(title, btn) {
-      btn.innerText = 'Applied ✓';
+      btn.innerText = state.lang === 'id' ? 'Terkirim ✓' : 'Applied ✓';
       btn.classList.remove('bg-indigo-600');
       btn.classList.add('bg-green-600');
-      showToast(`Lamaran 1-Click untuk ${title} terkirim!`);
+      showToast(state.lang === 'id' ? `Lamaran untuk ${title} terkirim!` : `Application for ${title} sent!`);
     }
 
-    function inviteToSquad(name) { showToast(`Undangan gabung Squad dikirim ke ${name}!`); }
+    function inviteToSquad(name) { showToast(state.lang === 'id' ? `Undangan gabung Squad dikirim ke ${name}!` : `Squad invitation sent to ${name}!`); }
 
     function openChatWindow(name, img) {
       document.getElementById('chatUserName').innerText = name;
@@ -961,18 +961,51 @@
           strengthBadge: "Profile Strength",
           strengthText: "85% Complete",
           strengthSub: "Add portfolio link to reach 100% and unlock top matches",
+          pillarAll: "Semua",
+          pillarJobs: "Jobs",
+          pillarPeers: "Peers",
+          pillarMentors: "Mentors",
+          topJobBadge: "Top Match Job",
+          jobMatchRate: "97% Match",
+          applyBtnFeed: "1-Click Apply with Portfolio",
+          peerSquadBadge: "Peer Squad Match",
+          peerMatchRate: "85% Match",
+          peerGoalSample: `"Ingin membangun platform IoT Smart Agriculture untuk Hackathon Nasional."`,
+          inviteSquadBtn: "Invite to Squad",
+          mentorRecBadge: "Recommended Mentor",
+          mentorMatchRate: "90% Match",
+          mentorDescSample: "Spesialis bimbingan CV Review, Career Roadmap Frontend & Product Management.",
+          bookAdvisingBtn: "Book 30-min Advising",
+          catAll: "Semua",
+          catIntern: "Internship",
+          catFreelance: "Freelance",
+          catParttime: "Part-Time",
+          catRemote: "Remote Only",
+          scopeCampus: "My Campus",
           allUniv: "All Universities",
+          peerTitle: "Open Competition Teams Looking for Members",
           createPost: "+ Create Post",
+          mentorCampusBtn: "Campus Academic Advisors (Free)",
+          mentorIndustryBtn: "Industry Experts",
           mentorHead: "Free Monthly Mentor Quota",
+          mentorDesc: `Bulan pertama gratis (limit 3 sesi)! Sisa kuota gratis Anda: <span id="mentorFreeCount" class="font-bold text-indigo-600 dark:text-indigo-400">3 dari 3</span> sesi. Buka akses unlimited seharga <strong class="text-pink-600">Rp 75.000/bulan</strong>.`,
           trackerTitle: "Job Applications Tracker",
+          trackerActive: "3 Active",
+          trackerTime: "2 hari lalu",
           savedHead: "Saved Items (Item Tersimpan)",
           noSaved: "Belum ada pekerjaan, peer, atau mentor yang disimpan.",
+          aiChatTitle: "Chat smarter with Sunday AI!",
+          aiChatSub: "AI Assistant for CV review & match tips",
+          chatTabAll: "All messages",
+          chatTabUnread: "Unread",
+          chatTabWork: "Work / Employers",
+          chatSampleMsg: "Hey! How's it going today? I've been reviewing your portfolio...",
           idHeader: "Digital Student ID Card",
           idSub: "Kustomisasi ID card sesuai minat karier utama Anda",
           editHeader: "Edit ID Card & Profile Details",
           themeLabel: "Card Gradient Theme",
-          avatarLabel: "Foto Profile / Avatar Muka",
-          uploadCustom: "Upload Foto Muka Custom",
+          avatarLabel: "Foto Profile / Header Avatar",
+          uploadCustom: "Upload Foto Profil Custom",
           editSchool: "Edit Kampus / University",
           displayName: "Display Name",
           careerFocus: "Career Focus / Minat",
@@ -983,7 +1016,15 @@
           navFind: "Find",
           navProg: "Progres",
           navChat: "Chat",
-          navProf: "Profile ID"
+          navProf: "Profile ID",
+          modalCreateTitle: "Create Squad Post",
+          publishPostBtn: "Publish Post",
+          modalBookTitle: "Book Mentor Session",
+          payBookingBtn: "Pay & Confirm Booking",
+          subModalTitle: "Go Premium Unlimited",
+          subModalDesc: "Buka semua fitur matching lintas universitas dan mentor unlimited di JobMatch.",
+          subModalBtn: "Bayar Rp 75.000 Sekarang",
+          onlineStatus: "Online"
         },
         en: {
           subHead: "Student Hub & Match",
@@ -1007,18 +1048,51 @@
           strengthBadge: "Profile Strength",
           strengthText: "85% Complete",
           strengthSub: "Add portfolio link to reach 100% and unlock top matches",
+          pillarAll: "All",
+          pillarJobs: "Jobs",
+          pillarPeers: "Peers",
+          pillarMentors: "Mentors",
+          topJobBadge: "Top Match Job",
+          jobMatchRate: "97% Match",
+          applyBtnFeed: "1-Click Apply with Portfolio",
+          peerSquadBadge: "Peer Squad Match",
+          peerMatchRate: "85% Match",
+          peerGoalSample: `"Looking to build an IoT Smart Agriculture platform for National Hackathon."`,
+          inviteSquadBtn: "Invite to Squad",
+          mentorRecBadge: "Recommended Mentor",
+          mentorMatchRate: "90% Match",
+          mentorDescSample: "Specialist in CV Review, Frontend Career Roadmap & Product Management advising.",
+          bookAdvisingBtn: "Book 30-min Advising",
+          catAll: "All",
+          catIntern: "Internship",
+          catFreelance: "Freelance",
+          catParttime: "Part-Time",
+          catRemote: "Remote Only",
+          scopeCampus: "My Campus",
           allUniv: "All Universities",
+          peerTitle: "Open Competition Teams Looking for Members",
           createPost: "+ Create Post",
+          mentorCampusBtn: "Campus Academic Advisors (Free)",
+          mentorIndustryBtn: "Industry Experts",
           mentorHead: "Free Monthly Mentor Quota",
+          mentorDesc: `First month free (3 sessions limit)! Your remaining free quota: <span id="mentorFreeCount" class="font-bold text-indigo-600 dark:text-indigo-400">3 of 3</span> sessions. Unlock unlimited access for <strong class="text-pink-600">Rp 75,000/mo</strong>.`,
           trackerTitle: "Job Applications Tracker",
+          trackerActive: "3 Active",
+          trackerTime: "2 days ago",
           savedHead: "Saved Items",
           noSaved: "No saved jobs, peers, or mentors yet.",
+          aiChatTitle: "Chat smarter with Sunday AI!",
+          aiChatSub: "AI Assistant for CV review & match tips",
+          chatTabAll: "All messages",
+          chatTabUnread: "Unread",
+          chatTabWork: "Work / Employers",
+          chatSampleMsg: "Hey! How's it going today? I've been reviewing your portfolio...",
           idHeader: "Digital Student ID Card",
           idSub: "Customize your ID card according to your main career interests",
           editHeader: "Edit ID Card & Profile Details",
           themeLabel: "Card Gradient Theme",
-          avatarLabel: "Profile Photo / Face Avatar",
-          uploadCustom: "Upload Custom Face Photo",
+          avatarLabel: "Profile Photo / Header Avatar",
+          uploadCustom: "Upload Custom Profile Photo",
           editSchool: "Edit University / Campus",
           displayName: "Display Name",
           careerFocus: "Career Focus / Interest",
@@ -1029,7 +1103,15 @@
           navFind: "Find",
           navProg: "Tracker",
           navChat: "Chat",
-          navProf: "Profile ID"
+          navProf: "Profile ID",
+          modalCreateTitle: "Create Squad Post",
+          publishPostBtn: "Publish Post",
+          modalBookTitle: "Book Mentor Session",
+          payBookingBtn: "Pay & Confirm Booking",
+          subModalTitle: "Go Premium Unlimited",
+          subModalDesc: "Unlock cross-university matching and unlimited mentors on JobMatch.",
+          subModalBtn: "Pay Rp 75,000 Now",
+          onlineStatus: "Online"
         }
       };
 
@@ -1055,12 +1137,45 @@
       document.getElementById('txtStrengthBadge').innerText = t.strengthBadge;
       document.getElementById('userStrengthText').innerText = t.strengthText;
       document.getElementById('txtStrengthSub').innerText = t.strengthSub;
+      document.getElementById('btnPillarAll').innerText = t.pillarAll;
+      document.getElementById('btnPillarJobs').innerText = t.pillarJobs;
+      document.getElementById('btnPillarPeers').innerText = t.pillarPeers;
+      document.getElementById('btnPillarMentors').innerText = t.pillarMentors;
+      document.getElementById('txtTopJobBadge').innerText = t.topJobBadge;
+      document.getElementById('txtJobMatchRate').innerText = t.jobMatchRate;
+      document.getElementById('txtApplyBtnFeed').innerText = t.applyBtnFeed;
+      document.getElementById('txtPeerSquadBadge').innerText = t.peerSquadBadge;
+      document.getElementById('txtPeerMatchRate').innerText = t.peerMatchRate;
+      document.getElementById('txtPeerGoalSample').innerText = t.peerGoalSample;
+      document.getElementById('txtInviteSquadBtn').innerHTML = `<i class="fa-solid fa-user-plus mr-1"></i> ${t.inviteSquadBtn}`;
+      document.getElementById('txtMentorRecBadge').innerText = t.mentorRecBadge;
+      document.getElementById('txtMentorMatchRate').innerText = t.mentorMatchRate;
+      document.getElementById('txtMentorDescSample').innerText = t.mentorDescSample;
+      document.getElementById('txtBookAdvisingBtn').innerText = t.bookAdvisingBtn;
+      document.getElementById('txtCatAll').innerText = t.catAll;
+      document.getElementById('txtCatIntern').innerText = t.catIntern;
+      document.getElementById('txtCatFreelance').innerText = t.catFreelance;
+      document.getElementById('txtCatParttime').innerText = t.catParttime;
+      document.getElementById('txtCatRemote').innerText = t.catRemote;
+      document.getElementById('lblScopeCampusName').innerText = t.scopeCampus;
       document.getElementById('txtAllUniv').innerText = t.allUniv;
+      document.getElementById('txtPeerTitle').innerText = t.peerTitle;
       document.getElementById('txtCreatePost').innerText = t.createPost;
+      document.getElementById('btnMentorCampus').innerText = t.mentorCampusBtn;
+      document.getElementById('btnMentorIndustry').innerText = t.mentorIndustryBtn;
       document.getElementById('txtMentorTrialHeader').innerText = t.mentorHead;
+      document.getElementById('txtMentorTrialDesc').innerHTML = t.mentorDesc;
       document.getElementById('txtTrackerTitle').innerText = t.trackerTitle;
+      document.getElementById('txtTrackerActiveBadge').innerText = t.trackerActive;
+      document.getElementById('txtTrackerTime').innerText = t.trackerTime;
       document.getElementById('txtSavedHeader').innerText = t.savedHead;
       if(document.getElementById('txtNoSaved')) document.getElementById('txtNoSaved').innerText = t.noSaved;
+      document.getElementById('txtAiChatTitle').innerText = t.aiChatTitle;
+      document.getElementById('txtAiChatSub').innerText = t.aiChatSub;
+      document.getElementById('txtChatTabAll').innerText = t.chatTabAll;
+      document.getElementById('txtChatTabUnread').innerText = t.chatTabUnread;
+      document.getElementById('txtChatTabWork').innerText = t.chatTabWork;
+      document.getElementById('txtChatSampleMsg').innerText = t.chatSampleMsg;
       document.getElementById('txtIdCardHeader').innerText = t.idHeader;
       document.getElementById('txtIdCardSub').innerText = t.idSub;
       document.getElementById('txtEditCardHeader').innerHTML = `<i class="fa-solid fa-palette text-indigo-500 mr-1"></i> ${t.editHeader}`;
@@ -1078,6 +1193,14 @@
       document.getElementById('navTracker').innerText = t.navProg;
       document.getElementById('navChat').innerText = t.navChat;
       document.getElementById('navProfile').innerText = t.navProf;
+      document.getElementById('txtModalCreateTitle').innerText = t.modalCreateTitle;
+      document.getElementById('txtPublishPostBtn').innerText = t.publishPostBtn;
+      document.getElementById('txtModalBookTitle').innerText = t.modalBookTitle;
+      document.getElementById('txtPayBookingBtn').innerText = t.payBookingBtn;
+      document.getElementById('txtSubModalTitle').innerText = t.subModalTitle;
+      document.getElementById('txtSubModalDesc').innerText = t.subModalDesc;
+      document.getElementById('txtSubModalBtn').innerText = t.subModalBtn;
+      document.getElementById('txtOnlineStatus').innerText = t.onlineStatus;
 
       showToast(state.lang === 'id' ? 'Bahasa diubah ke Bahasa Indonesia' : 'Language switched to English');
     }
@@ -1087,12 +1210,10 @@
       state.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     }
 
-    /* KONFIRMASI UPGRADE PERMANEN */
     function confirmUpgrade() {
       state.user.isPremium = true;
       closeModal('subscriptionModal');
 
-      // Update elemen UI untuk menandakan status PRO aktif
       const badgePro = document.getElementById('badgePeerPro');
       if (badgePro) {
         badgePro.innerText = "ACTIVE";
